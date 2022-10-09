@@ -16,10 +16,10 @@ export const NavbarContent = ({active, set_active}) => {
   return(
   <div className={active ? "navbar_content" : "navbar_content inactive"} /*className="navbar"*/>
     <a id="close_nav_btn"  onClick={() => set_active(false)}>&#10006;</a>
-    <NavLink to="/player">Player</NavLink>
-    <NavLink to="/library">Library</NavLink>
-    <NavLink to="/playlists">Playlists</NavLink>
-    <a to="/" onClick={logout_handler}>LogOut</a>
+    {/*<NavLink className="nav_link" to="/player">Player</NavLink>*/}
+    <NavLink className="nav_link" to="/library">Library</NavLink>
+    <NavLink className="nav_link" to="/playlists">Playlists</NavLink>
+    <a to="/" className="nav_link" onClick={logout_handler}>LogOut</a>
   </div>
 )
 

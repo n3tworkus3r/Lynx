@@ -1,5 +1,8 @@
+@import '../../../styles/variables.scss';
+
+
 .next_button:hover {
-	border-color: 35px solid #a31717;;
+	border-color: 35px solid $theme_color;
 }
 
 .triangle-right {
@@ -14,7 +17,7 @@
 }
 
 .triangle-right:hover {
-	border-color: 35px solid #a31717;;
+	border-color: 35px solid $theme_color;
 }
 
 .second-triangle-right {

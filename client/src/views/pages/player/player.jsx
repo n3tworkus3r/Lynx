@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Player } from "../../components/player/player"
-import "./player.css"
+import "./player.scss"
 
 
 export const PlayerPage = (/*{ tracks }*/) => {

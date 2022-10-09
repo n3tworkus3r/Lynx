@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .playpause label {
   display: block;
   box-sizing: border-box;
@@ -12,7 +14,7 @@
 }
 
 .playpause label:hover {
-  border-color: transparent transparent transparent #a31717;
+  border-color: transparent transparent transparent $theme_color;
 }
 
 .playpause input[type="checkbox"] {

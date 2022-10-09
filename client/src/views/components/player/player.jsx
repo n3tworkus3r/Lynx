@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import AudioControls from "./player_controls"
 //import Backdrop from "./Backdrop"
-import "./player.css"
+import "./player.scss"
 
 
 export const Player = ({active, set_active, tracks }) => {

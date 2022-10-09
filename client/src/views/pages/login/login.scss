@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 #login_box {
     position: absolute;
     align-content: center;
@@ -14,7 +16,7 @@
     font-size: large;
     font-weight: 700;
     text-align: center;
-    background: #1e2938cb;
+    background: $background_color;
     color: #fff;
     border: none;
     padding: 20px 0px 15px 0px;
@@ -39,7 +41,7 @@
 }
 
 #login_title:hover {
-   color: #a31717;
+   color: $theme_color;
     /*
     color: #fff;
     text-shadow:
@@ -55,12 +57,12 @@
 }
 
 #login_btn{
-    background-color: #202e3d;
+    background-color: $main_color;
     color: #fff;
     font-style: normal;
     padding: inherit;
 }
 
 #login_btn:hover{
-    background-color: #a31717;
+    background-color: $theme_color;
 }

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 #main {
   box-sizing: border-box;
 }
@@ -30,7 +32,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /*padding: 16px;*/
   text-align: center;
-  background-color: #202e3d;
+  background-color: $main_color;
   color: #fff;
   margin: 10px;
   width: 150px;
@@ -40,7 +42,7 @@
 }
 
 .card:hover {
-  background-color: #a31717;
+  background-color: $theme_color;
 }
 
 .library_image {

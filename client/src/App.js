@@ -1,6 +1,6 @@
 import { use_routes } from './routes';
 import React, { useState } from 'react';
-import { use_auth } from './hooks/auth.hook';
+import { useAuth } from './hooks/auth.hook';
 import { auth_context } from './context/auth_context';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { NavbarBtn } from './views/components/navbar/navbar_button'
@@ -10,7 +10,7 @@ import { NavbarContent } from './views/components/navbar/navbar_content'
 function App() {
 
   const [navbar_active, set_navbar_active] = useState(false)
-  const {token, login, logout, user_id} = use_auth()
+  const {token, login, logout, user_id} = useAuth()
   const is_authenticated = !!token
   const routes = use_routes(is_authenticated)
 

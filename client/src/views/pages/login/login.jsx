@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './login.css'
-import { use_http } from '../../../hooks/http.hook'
-import { use_message } from '../../../hooks/message.hook'
+import './login.scss'
+import { useHttp } from '../../../hooks/http.hook'
+import { useMessage } from '../../../hooks/message.hook'
 import { auth_context } from '../../../context/auth_context'
 
 export const LoginPage = () => { 
 
-  const message = use_message()
+  const message = useMessage()
   const auth = useContext(auth_context) 
-  const { loading, request, error, clear_error } = use_http()
+  const { loading, request, error, clear_error } = useHttp()
   const [ form, set_form ] = useState({ email: '', password: '' })
 
   const change_handler = event => { 

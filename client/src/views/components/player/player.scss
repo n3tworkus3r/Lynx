@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .player {
   width: 80%;
   height: 90%;
@@ -10,7 +12,7 @@
   bottom: 0;
   width: 80%;
   height: 15%;
-  background-color: #202e3d;;
+  background-color: $main_color;
   z-index: 1;
   transform: scale(0);
   margin-bottom: 20px;
@@ -51,7 +53,7 @@ input[type=range]::-webkit-slider-thumb {
   border: none;
   height: 16px;
   width: 16px;
-  background: #a31717;
+  background: $theme_color;
 }
 
 /*************************/
@@ -80,7 +82,7 @@ input[type=range]::-webkit-slider-thumb {
 .next_btn:hover,
 .play_btn:hover,
 .pause_btn:hover   {
-  fill: #a31717;
+  fill: $theme_color;
 }
 
 .audio_controls path {

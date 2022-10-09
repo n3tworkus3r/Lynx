@@ -1,10 +1,10 @@
 import React from "react"
-import "./library.css"
-import { use_http } from '../../../hooks/http.hook'
+import "./library.scss"
+import { useHttp } from '../../../hooks/http.hook'
 import { Player } from "../../components/player/player"
 import { useState } from "react"
 export const LibraryPage = () => {
-  const {request} = use_http()
+  const {request} = useHttp()
 
   ////////////////////////////////////////
   //// ОБРАБОТЧИК ВОСПРОИЗВЕДЕНИЯ ТРЕКА

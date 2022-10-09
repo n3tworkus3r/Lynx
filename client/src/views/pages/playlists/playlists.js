@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from 'axios'
-import "./playlists.css"
+import "./playlists.scss"
 
 export const PlaylistsPage = () => {
 

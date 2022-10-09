@@ -1,5 +1,5 @@
 import React from 'react'
-import './play_button.css'
+import './play_button.scss'
 
 export const PlayButton = () => {
   return(

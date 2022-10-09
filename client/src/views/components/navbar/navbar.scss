@@ -1,11 +1,13 @@
+@import '../../styles/variables.scss';
+
+
 .navbar_content {
   height: 100%;
-
   position: fixed;
   z-index: 101;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: $background_color;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 15px;
@@ -19,14 +21,19 @@
   padding: 8px 32px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #fff;
   display: block;
   transition: 0.3s;
 }
 
-.navbar a:hover {
-  color: #a31717;
+.nav_link {
+  padding: 10px;
 }
+
+.nav_link:hover {
+  color: $theme_color;
+}
+
 
 #close_nav_btn {
   position: absolute;
@@ -34,6 +41,10 @@
   right: 5px;
   font-size: 20px;
   padding: 5px 5px 5px 5px;
+}
+
+#close_nav_btn:hover {
+  color: $theme_color;
 }
 
 .navbar.active {
@@ -48,14 +59,14 @@
   z-index: 100;
   font-size: 20px;
   cursor: pointer;
-  background-color: #202e3d;
+  background-color: $main_color;
   color: white;
   padding: 20px 25px;
   border: none;
 }
 
 #nav_btn:hover {
-  background-color: #a31717;
+  background-color: $theme_color;
 }
 
 #main {
