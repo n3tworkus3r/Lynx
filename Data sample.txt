@@ -19,11 +19,11 @@ TRACKS
   "_id": {
     "$oid": "639095a4f40069f7075b5ede"
   },
- "track_id": 1,
-  "name": "HIVE",
+  "track_id": 1,
+  "name": "THE HIVE",
   "artist": "KLOUD",
   "img": "./playlists/img/1.jpg",
-  "src": "C:\\1.mp3"
+  "src": "http://127.0.0.1:8080/KLOUD - THE HIVE.mp3"
 }
 
 
@@ -36,6 +36,5 @@ TRACKS
   "name": "QUESTION",
   "artist": "KLOUD",
   "img": "./playlists/img/2.jpg",
-  "src": "C:\\2.mp3"
+  "src": "http://127.0.0.1:8080/KLOUD - QUESTION.mp3"
 }
-

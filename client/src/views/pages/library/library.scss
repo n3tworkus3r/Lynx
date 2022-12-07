@@ -1,8 +1,6 @@
 @import "../../styles/variables.scss";
+@import "../../styles/general.scss";
 
-#main {
-  box-sizing: border-box;
-}
 
 /* Float four columns side by side */
 .column {
@@ -11,9 +9,6 @@
   padding: 0 10px;
   margin: 5px;
 }
-
-/* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
 
 .row:after {
   content: "";

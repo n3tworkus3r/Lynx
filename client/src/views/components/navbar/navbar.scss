@@ -69,14 +69,6 @@
   background-color: $theme_color;
 }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-  margin-left: 100px;
-  display: inline-flex;
-  justify-content: center;
-}
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size)
 @media screen and (max-height: 450px) {
   .navbar {padding-top: 15px;}

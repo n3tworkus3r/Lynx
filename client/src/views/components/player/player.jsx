@@ -1,26 +1,31 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
 import AudioControls from "./player_controls"
 //import Backdrop from "./Backdrop"
 import "./player.scss"
+import { tracksContext } from '../../../context/tracks_context'
 
-
-export const Player = ({active, set_active, tracks }) => {
+export const Player = ({active, set_active, track_finded }) => {
   // State
+
+  const tracks_context = useContext(tracksContext)
+  
   const [trackIndex, setTrackIndex] = useState(0)
   const [trackProgress, setTrackProgress] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   // Destructure for conciseness
- // const { title, artist, color, image, audioSrc } = tracks[trackIndex]
+  // const { title, artist, color, image, audioSrc } = tracks[trackIndex]
 
-  const { title, audioSrc } = tracks[trackIndex]
+  //const audioSrc = tracks[trackIndex].src
+  //const audioSrc { title, audioSrc } = tracks[trackIndex]
 
-  // Refs
+  const tracks = tracks_context.track_list
+
   const audioRef = useRef(new Audio())
   const intervalRef = useRef()
   const isReady = useRef(false)
 
-  // Destructure for conciseness
+
   const { duration } = audioRef.current
 
   const currentPercentage = duration ? `${(trackProgress / duration) * 100}%`: "0%"
@@ -82,9 +87,9 @@ export const Player = ({active, set_active, tracks }) => {
   }, [isPlaying])
 
   useEffect(() => {
-    audioRef.current.pause();
 
-    audioRef.current = new Audio(tracks[trackIndex][1])
+    audioRef.current.pause();
+    audioRef.current = new Audio(tracks[trackIndex]['src']) // //"http://127.0.0.1:8080/KLOUD - QUESTION.mp3"
     setTrackProgress(audioRef.current.currentTime)
 
     if (isReady.current) {
@@ -109,13 +114,6 @@ export const Player = ({active, set_active, tracks }) => {
   <div className={active ? "player_container active" : "player_container"}>
     <div className="player">
       <div className="track_info">
-        {/*<img
-          className="artwork"
-          src={image}
-          alt={`track artwork for ${title} by ${artist}`}
-        />
-        <h2 className="title">{title}</h2>
-        <h3 className="artist">{artist}</h3>*/}
 
         <a id="close_player_btn"  onClick={() => set_active(false)}>&#10006;</a>
 

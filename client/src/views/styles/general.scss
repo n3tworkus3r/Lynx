@@ -1,0 +1,13 @@
+#main {
+    box-sizing: border-box;
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-left: 100px;
+    display: inline-flex;
+    //justify-content: center;
+    
+}
+
+
+  /* Remove extra left and right margins, due to padding */
+.row {margin: 0 -25px;}

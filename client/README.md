@@ -9,3 +9,17 @@ npx create-app-react .
 REACT ROUTING
 npm i react-router-dom
 npm install react-router-dom --save
+
+
+
+```
+npm install --global http-server
+```
+
+```
+Set-ExecutionPolicy Unrestricted
+```
+
+```
+http-server ./
+```

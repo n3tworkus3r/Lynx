@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
+    "carousel-react-rcdev": "^0.0.5",
     "concurrently": "^7.3.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
@@ -25,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^6.3.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sladio": "^1.5.1"
   }
 }

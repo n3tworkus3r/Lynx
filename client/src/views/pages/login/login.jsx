@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import './login.scss'
 import { useHttp } from '../../../hooks/http.hook'
 import { useMessage } from '../../../hooks/message.hook'
-import { auth_context } from '../../../context/auth_context'
+import { authContext } from '../../../context/auth_context'
 
 export const LoginPage = () => { 
 
   const message = useMessage()
-  const auth = useContext(auth_context) 
+  const auth = useContext(authContext) 
   const { loading, request, error, clear_error } = useHttp()
   const [ form, set_form ] = useState({ email: '', password: '' })
 

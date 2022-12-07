@@ -1,14 +1,11 @@
 @import "../../styles/variables.scss";
-
+@import "../../styles/general.scss";
 .column {
   float: left;
   width: 200px;
   padding: 0 10px;
   margin: 5px;
 }
-
-/* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
 
 .row:after {
   content: "";
