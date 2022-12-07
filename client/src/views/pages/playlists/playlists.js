@@ -7,7 +7,7 @@ export const PlaylistsPage = () => {
   const [playlists, setPlaylists] = useState([])
 
     useEffect( () => {
-      axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10&_page=3')
+      axios.get('http://localhost:4000/get_tracks')
       .then(response => setPlaylists(response.data))
     }, [])
 
@@ -27,34 +27,46 @@ export const PlaylistsPage = () => {
 
   return(
   <div id="main">
+
+    {/*
     <div className="row">
       <div className="column">
         <div className="playlist_card">
           <img className="playlist_image" src={require('./playlists/img/1.jpg')} alt="playlist_img"/>
           {/*<p className="track_name">track name 1</p>*/}
-        </div>
+     {/*    </div>
       </div>
 
       <div className="column">
         <div className="playlist_card">
           <img className="playlist_image" src={require('./playlists/img/2.jpg')} alt="playlist_img"/>
           {/*<p className="track_name">track name 1</p>*/}
-        </div>
+     {/*    </div>
       </div>
 
       <div className="column">
         <div className="playlist_card">
           <img className="playlist_image" src={require('./playlists/img/3.jpg')} alt="playlist_img"/>
           {/*<p className="track_name">track name 1</p>*/}
-        </div>
+     {/*    </div>
       </div>
 
       <div className="column">
         <div className="playlist_card">
           <img className="playlist_image" src={require('./playlists/img/4.jpg')} alt="playlist_img"/>
           {/*<p className="track_name">track name 1</p>*/}
-        </div>
+     {/*    </div>
       </div>
+    */}   
+        {playlists.map(playlist =>
+          <div className="column">
+          <div className="card">
+            <div className="title">{playlist.id} </div>
+            <p className="track_name">{playlist.name} </p>
+            {/*<img src={playlist.}/>*/}
+          </div>
+          </div>
+        )}  
 
       {/* DYNAMIC PAGINATION 
         {playlists.map(playlist =>
@@ -66,7 +78,7 @@ export const PlaylistsPage = () => {
           </div>
         )}  
         */}        
-    </div>
+    {/*</div> */}  
   </div>
   )
 }

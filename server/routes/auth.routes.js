@@ -42,9 +42,9 @@ router.post(
     //////// PASSWORD HASHING
     /////////////////////////////////////////
     const hashed_password = await bcrypt.hash(password, 12)
-    const user = new Users({email, password: hashed_password})
+    const User = new Users({email, password: hashed_password})
 
-    await user.save()
+    await User.save()
     res.status(201).json({message : 'Ok!'})
 
   } 

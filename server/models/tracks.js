@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const tracks = new Schema({
+const Tracks = new Schema({
   track_id: {
     type: Number,
   },
@@ -18,4 +18,4 @@ const tracks = new Schema({
   }
 })
 
-module.exports = model('Tracks', tracks)
+module.exports = model('Tracks', Tracks)

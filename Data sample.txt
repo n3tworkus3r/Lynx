@@ -1,0 +1,41 @@
+USER
+{
+  "_id": {
+    "$oid": "639084281e12e92a0bf18952"
+  },
+  "email": "belyaev@mail.com",
+  "password": "$2a$12$eboNc32SWPtt8ov/RIrane5170GjADjuSOmyEWqvI2hidNAdgUfVS",
+  "name": "BELYAEV",
+  "playlists": [{  "playlist_id": 1,
+			"name": "The Devil Within",
+			"owner": "BELYAEV",
+			"img": "C:\\1.jpg",
+			"track_count": 9}]
+  "__v": 0
+}
+
+TRACKS
+{
+  "_id": {
+    "$oid": "639095a4f40069f7075b5ede"
+  },
+ "track_id": 1,
+  "name": "HIVE",
+  "artist": "KLOUD",
+  "img": "./playlists/img/1.jpg",
+  "src": "C:\\1.mp3"
+}
+
+
+
+{
+  "_id": {
+    "$oid": "6390963ff40069f7075b5edf"
+  },
+  "track_id": 2,
+  "name": "QUESTION",
+  "artist": "KLOUD",
+  "img": "./playlists/img/2.jpg",
+  "src": "C:\\2.mp3"
+}
+
