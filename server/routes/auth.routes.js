@@ -81,19 +81,19 @@ router.post(
     const user = await Users.findOne({ email })
 
     if(!user) {
-        return res.status(400).json({message : 'User not found!'})
+      return res.status(400).json({message : 'User not found!'})
     }
 
     const password_is_match = await bcrypt.compare(password, user.password)
 
     if(!password_is_match) {
-        return res.status(400).json({message : 'Password is wrong!'})
+      return res.status(400).json({message : 'Password is wrong!'})
     }
 
     const token = jwt.sign(
-        { userId: user.id},
-        config.get('jwt_secret'),
-        {expiresIn: '1h'}
+      { userId: user.id},
+      config.get('jwt_secret'),
+      {expiresIn: '1h'}
     )
     res.json({ token, userId: user.id })
   } 
