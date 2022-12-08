@@ -1,0 +1,22 @@
+.modal__body::-webkit-scrollbar, .items::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.carousel_container {
+    max-width: 50%;
+    margin: auto;
+    position: absolute;
+    left: 25%;
+    bottom: 15px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    overflow-x: scroll;
+}

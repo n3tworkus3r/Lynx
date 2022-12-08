@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext} from "react"
+import React, { useEffect, useState, useContext} from 'react'
 import axios from 'axios'
-import "./library.scss"
+import './library.scss'
 import { useHttp } from '../../../hooks/http.hook'
-import { Player } from "../../components/player/player"
+import { Player } from '../../components/player/player'
 import { tracksContext } from '../../../context/tracks_context'
-
+import Carousel from '../../components/carousel/carousel'
 
 export const LibraryPage = () => {
   ////////////////////////////////////////
@@ -82,6 +82,8 @@ export const LibraryPage = () => {
     <Player active={playerActive} set_active={set_player_active} track_finded={track_finded} set_track_finded={set_track_finded}></Player>
   
     <div className="row">
+    <div className="carousel_container">
+      <Carousel _class='items'>
       {Tracks.map(track =>
 
           <div className="column">
@@ -93,6 +95,8 @@ export const LibraryPage = () => {
             </div>
         </div>
       )}
+            </Carousel>
+    </div>
     </div>
   </div>
   )

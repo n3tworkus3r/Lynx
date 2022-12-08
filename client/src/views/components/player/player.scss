@@ -6,13 +6,14 @@
 }
 
 .player_container {
-  display: flex;
+  /*display: flex;*/
   position: absolute;
   justify-content: center;
-  bottom: 0;
-  width: 80%;
+  bottom: 200px;
+  width: 90%;
+  left: 10%;
   height: 15%;
-  background-color: $main_color;
+  /*background-color: $main_color;*/
   z-index: 1;
   transform: scale(0);
   margin-bottom: 20px;
@@ -29,6 +30,7 @@ button {
 }
 
 #close_player_btn {
+  display: none;
   position: absolute;
   color: #fff;
   top: 0;
