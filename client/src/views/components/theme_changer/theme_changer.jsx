@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useInsertionEffect } from "react"
 //import Backdrop from "./Backdrop"
 import "./theme_changer.scss"
 import "../../styles/variables.scss"
-import userEvent from "@testing-library/user-event";
 
 
 export const ThemeChanger = ({active, set_active }) => {

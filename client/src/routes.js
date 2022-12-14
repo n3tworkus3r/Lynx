@@ -5,7 +5,7 @@ import { LibraryPage } from './views/pages/library/library'
 import { PlaylistsPage } from './views/pages/playlists/playlists'
 import { PlayerPage } from './views/pages/player/player'
 
-export const use_routes = is_authenticated => {
+export const useRoutes = is_authenticated => {
   if (is_authenticated) {
     return (
       <Routes>

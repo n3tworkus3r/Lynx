@@ -1,4 +1,4 @@
-import { use_routes } from './routes';
+import { useRoutes } from './routes';
 import React, { useState } from 'react';
 import { useAuth } from './hooks/auth.hook';
 import { authContext } from './context/auth_context';
@@ -12,7 +12,7 @@ function App() {
   const [navbar_active, set_navbar_active] = useState(false)
   const {token, login, logout, user_id} = useAuth()
   const is_authenticated = !!token
-  const routes = use_routes(is_authenticated)
+  const routes = useRoutes(is_authenticated)
 
   return (
     <authContext.Provider value= {{token, login, logout, user_id, is_authenticated}}>
