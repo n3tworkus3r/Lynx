@@ -2,9 +2,6 @@ const {Schema, model} = require('mongoose');
 
 const Playlists = new Schema({
   _id: Schema.Types.ObjectId,
-  playlist_id: {
-    type: Number
-  },
   name: {
     type: String
   },

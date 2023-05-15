@@ -34,9 +34,9 @@
   text-align: center;
   background-color: $main_color;
   color: #fff;
-  margin: 5px;
+  margin: 10px;
   width: 206px;
-  height: 206px;
+  height: 236px;
 }
 
 .playlist_card:hover {
@@ -46,6 +46,7 @@
 .playlist_image {
   padding: 1px;
   padding-top: 5px;
+  padding-bottom: 15px;
   height: 196px;
   width: 196px;
 }

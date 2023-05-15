@@ -5,6 +5,7 @@ const {Schema, model} = require('mongoose')
 //const Playlists = mongoose.model('Playlists', Playlists)
 
 const Users = new Schema({
+  _id: Schema.Types.ObjectId,
   email: {
     type: String,
     //required: true

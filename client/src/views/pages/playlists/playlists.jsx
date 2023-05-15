@@ -56,15 +56,16 @@ export const PlaylistsPage = () => {
   ///////////////////////////////////
   //////////// RENDERING ////////////
   ///////////////////////////////////
-
+  //  src={require(playlist.img)}
   return(
   <div id="main" >
     <div className={ isPlaylistOpen ? "playlist_container blur" : "playlist_container"}>
         {playlists.map(playlist =>
           <div className="playlist_column">
             <div className="playlist_card" onClick={() => openPlaylist(playlist)}>
-              <div className="playlist_title">{playlist.playlist_id} </div>
-              <p className="playlist_track_name">{playlist.name} </p>
+              { playlist.img &&  <img className="playlist_image" src={playlist.img} alt="disk_img"/>}
+              <div className="playlist_title"></div>
+              <p className="playlist_track_name">{playlist.name}</p>
             </div>
           </div>
         )}

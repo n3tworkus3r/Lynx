@@ -2,9 +2,6 @@ const {Schema, model} = require('mongoose');
 
 const Tracks = new Schema({
   _id: Schema.Types.ObjectId,
-  track_id: {
-    type: Number,
-  },
   name: {
     type: String,
   },
