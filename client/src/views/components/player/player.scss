@@ -1,22 +1,29 @@
 @import '../../styles/variables.scss';
 
 .player {
-  width: 80%;
+//  width: 80%;
   height: 90%;
 }
 
+.time_line {
+  width: 80%;
+  position: relative;
+  margin: auto;
+}
 .player_container {
-  /*display: flex;*/
-  position: absolute;
+  /*display: block;*/
+  position: fixed;
   justify-content: center;
   bottom: 200px;
-  width: 90%;
-  left: 10%;
-  height: 15%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  /*height: 15%;**/
   /*background-color: $main_color;*/
   z-index: 1;
   transform: scale(0);
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
+  background-color: $main_color;
 }
 
 .player_container.active {

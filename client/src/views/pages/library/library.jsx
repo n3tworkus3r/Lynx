@@ -19,10 +19,10 @@ export const LibraryPage = () => {
   ////////////////////////////////////////
   const [Tracks, setTracks] = useState([])
 
-    useEffect( () => {
-      axios.get('http://localhost:4000/library')
-      .then(response => setTracks(response.data))
-    }, [])
+  useEffect( () => {
+    axios.get('http://localhost:4000/library')
+    .then(response => setTracks(response.data))
+  }, [])
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler)

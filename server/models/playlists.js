@@ -1,6 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const Playlists = new Schema({
+  _id: Schema.Types.ObjectId,
   playlist_id: {
     type: Number
   },
@@ -13,9 +14,10 @@ const Playlists = new Schema({
   img: {
     type: String
   },
-  track_count: {
-    type: Number
-  }
+  tracks: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Tracks'
+  }]
 })
 
 module.exports = model('Playlists', Playlists)

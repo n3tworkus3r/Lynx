@@ -1,0 +1,126 @@
+const Router = require('express')
+const router = Router()
+const Playlists = require('../models/playlists')
+const Tracks = require('../models/tracks')
+const cors = require('cors')
+
+/////////////////////////////////////////
+//////// CORS POLICIES
+/////////////////////////////////////////
+
+const corsOptions = {origin:'http://localhost:3000'}
+
+/////////////////////////////////////////
+//////// RETURN ALL PLAYLISTS
+/////////////////////////////////////////
+
+router.get('/playlists', cors(corsOptions), async (req,res) => {
+  const playlists_list = await Playlists.find()
+  res.status(200).json(playlists_list)
+})
+
+
+/////////////////////////////////////////
+//////// RETURN REQUESTED PLAYLIST
+/////////////////////////////////////////
+
+router.get('/playlists/:id', cors(corsOptions), async (req,res) => {
+    //console.log("REQUEST FROM CLIENT: ",req )
+    //console.log("ID FROM CLIENT:",req.params.id)
+    
+    // SIMPLE RESPONCE
+    //const playlist = await Playlists.findById(req.params.id)
+
+    // RESPONCE WITH POPULATE (EXTENDS TRACKS DATA)
+    const playlist = await Playlists.findById(req.params.id)
+    .populate('tracks') // FIELD FOR FILLING DATA
+    .then(playlist => {
+      console.log("REQUESTED PLAYLIST: ", playlist)
+      //console.log("TRACKS FROM PLAYLIST: ", playlist.tracks);
+      res.status(200).json(playlist)
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    //res.status(200).json(playlist)
+})
+
+/////////////////////////////////////////
+//////// ADD PLAYLIST
+/////////////////////////////////////////
+
+router.post('/playlists/add', cors(corsOptions), async (req,res) => {
+
+  console.log(req.body)
+  const playlist = new Playlists({
+      name: req.body.name, 
+      description: req.body.description,
+      subject: req.body.subjects,
+      section: req.body.sections,
+      class: req.body.classes
+  })
+
+  try{ // Сохранение плейлиста в БД
+      await playlist.save()
+      res.redirect('/playlists')
+  } catch(err) {
+      console.log(err)
+  }
+  res.status(201).json()
+})
+
+
+/////////////////////////////////////////
+//////// EDIT PLAYLIST
+/////////////////////////////////////////
+
+router.post('/playlists/edit', cors(corsOptions), async (req,res) => {
+
+  console.log("PLAYLIST REQ BODY", req.body)
+
+  const new_playlist = new Playlists({
+      id: req.body.id, 
+      name: req.body.name, 
+      description: req.body.description,
+      subject: req.body.subject,
+      section: req.body.section,
+      class: req.body.classes
+  })
+  
+//  console.log("PLAULIST AFTER REQ", new_playlist)
+
+  try{ // Редактирование курса
+    Playlists.findOneAndUpdate({ id: new_playlist.id }, {
+        name: new_playlist.name, 
+        description: new_playlist.description,
+        subject: new_playlist.subject,
+        section: new_playlist.section,
+        class: new_playlist.class
+      }, { new: false }, function(err, new_playlist) {
+      if (err) {
+        console.log('Ошибка при замене курса:', err);
+      } else {
+        console.log('Заменен курс:', new_playlist);
+      }
+    });
+
+  } catch(err) {
+      console.log(err)
+  }
+  res.status(201).json()
+})
+
+
+/////////////////////////////////////////
+//////// REMOVE PLAYLIST
+/////////////////////////////////////////
+
+router.post('/playlists/remove', cors(corsOptions), async (req,res) => {
+  const id = req.body.id;
+  const name = req.body.name;
+
+  Playlists.findOneAndRemove()
+})
+
+module.exports = router

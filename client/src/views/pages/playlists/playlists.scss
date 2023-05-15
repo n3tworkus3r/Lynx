@@ -1,20 +1,29 @@
 @import "../../styles/variables.scss";
 @import "../../styles/general.scss";
-.column {
+
+.playlist_container {
+  //align-items: center;
+  display: block;
+  position: fixed;
+  max-width: 70%;
+  left: 15%;
+}
+
+.playlist_column {
   float: left;
   width: 200px;
   padding: 0 10px;
   margin: 5px;
 }
 
-.row:after {
+.playlist_row:after {
   content: "";
   display: table;
   clear: both;
 }
 
 @media screen and (max-width: 600px) {
-  .column {
+  .playlist_column {
     display: block;
     margin-bottom: 20px;
   }
@@ -22,15 +31,12 @@
 
 .playlist_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  /*padding: 16px;*/
   text-align: center;
   background-color: $main_color;
   color: #fff;
   margin: 5px;
   width: 206px;
   height: 206px;
-  /*max-width: 200px;
-  max-height: 200px;*/
 }
 
 .playlist_card:hover {
@@ -44,6 +50,47 @@
   width: 196px;
 }
 
-.track_name {
+.playlist_track_name {
+  position: relative;
+  bottom: 10px;
   margin: 0;
 }
+
+////////// PLAYLIST MODAL
+/// 
+.playlist_modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $background_color;
+  padding: 20px;
+  width: 60%;
+  min-height: 80%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.playlist_modal_overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.playlist_modal_close_btn {
+  font-family: "lato", sans-serif;
+  color: #fff;
+  right: 15px;
+  padding: 5px 5px 10px 5px;
+
+  background-color: $main_color;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  border-radius: 25%;
+}
+
+.playlist_modal_close_btn:hover {
+  background-color: $theme_color;
+}
+
+
+

@@ -1,13 +1,22 @@
+body {
+  overflow: hidden;
+}
+
 #main {
     box-sizing: border-box;
     transition: margin-left .5s;
     padding: 16px;
     margin-left: 100px;
     display: inline-flex;
-    //justify-content: center;
-    
+    height: 100%;
+    width: 100%;
 }
 
+// MODAL WINDOW BLUR
+.blur {
+  filter: blur(4px);
+  //transition: filter 0.3s ease-in-out;
+}
 
-  /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -25px;}
+// Remove extra left and right margins, due to padding
+//.row {margin: 0 -25px;}

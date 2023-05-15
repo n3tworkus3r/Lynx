@@ -119,7 +119,7 @@ export const Player = ({active, set_active, track_finded }) => {
 
         <AudioControls isPlaying={isPlaying} onPrevClick={toPrevTrack} onNextClick={toNextTrack} onPlayPauseClick={setIsPlaying}/>
         
-        <div className="range">
+        <div className="time_line">
           <input type="range" value={trackProgress} step="1" min="0" 
           max={duration ? duration : `${duration}`} className="progress_bar" 
           list="custom-list"
