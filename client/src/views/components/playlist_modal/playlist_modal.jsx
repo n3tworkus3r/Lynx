@@ -27,28 +27,18 @@ export const PlaylistContent = ({playlist_data}) => {
     
     console.log("PLAYLIST FROM SERVER BY REQUEST: ",
     axios.get(`http://localhost:4000/playlists/${playlist_id}`)
-    .then(response => { //setPlaylist(response.data)
-            const requested_playlist = response.data
-            console.log(requested_playlist)
-            setPlaylist(requested_playlist)
-            setTracks(requested_playlist.tracks)
-        }
+    .then(response => {
+        const requested_playlist = response.data
+        console.log(requested_playlist)
+        
+        setPlaylist(requested_playlist)
+        setTracks(requested_playlist.tracks)
+      }
     ))
 
     
   }, [])
 
-
-//  async function setPlaylistData() {
-//    try {
-//      const response = await axios.get(`http://localhost:4000/playlists/${playlist_data.id}`);
-//      const playlist = response.data;
-//      //console.log(playlist);  // здесь вы можете использовать данные
-//      return playlist;  // возвращает данные, которые могут быть использованы там, где вызывается fetchTracks
-//    } catch (error) {
-//      console.error(error);
-//    }
-//  }
   
   ///////////////////////////////////
   ////////////// DEBUG //////////////

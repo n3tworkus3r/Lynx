@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './login.scss'
+import axios from 'axios'
 import { useHttp } from '../../../hooks/http.hook'
 import { useMessage } from '../../../hooks/message.hook'
 import { authContext } from '../../../context/auth_context'
@@ -31,11 +32,26 @@ export const LoginPage = () => {
 
   
   const login_handler = async () => {
-    try {
-      const data = await request('/api/auth/login', 'POST', {...form})
-      auth.login(data.token, data.id)
-    } catch (error) { }
+    
+  axios.post('/api/auth/login',  {...form})
+  .then(response => {
+    console.log("FORM DATA: ",{...form})
+    const token = response.data.token;
+    const id = response.data.id
+    auth.login(token, id)
+    console.log("TOKEN: ",response.data.token)
+    console.log("ID: ",response.data.id)
+    localStorage.setItem('token', token);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+//    try {
+//      const data = await request('/api/auth/login', 'POST', {...form})
+//      auth.login(data.token, data.id)
+//    } catch (error) { }
   }
+
 
   return(
     <div id="login_box">

@@ -2,6 +2,7 @@ const Router = require('express')
 const router = Router()
 const Playlists = require('../models/playlists')
 const Tracks = require('../models/tracks')
+const Users = require('../models/users')
 const cors = require('cors')
 
 /////////////////////////////////////////
@@ -18,6 +19,26 @@ router.get('/playlists', cors(corsOptions), async (req,res) => {
   const playlists_list = await Playlists.find()
   res.status(200).json(playlists_list)
 })
+
+router.get('/playlists/user/:id', cors(corsOptions), async (req,res) => {
+  
+  const user = await Users.findById(req.params.id)
+  .populate('playlists') // FIELD FOR FILLING DATA BY UUID
+  .then(user => {
+    console.log("USER ID: ", req.params.id)
+    console.log("REQUESTED USER: ", user)
+    console.log("PLAYLIST FROM USER: ", user.playlists);
+    
+    
+    res.status(200).json(user.playlists)
+  })
+  .catch(err => {
+    console.error(err);
+  });
+})
+
+
+
 
 
 /////////////////////////////////////////

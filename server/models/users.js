@@ -19,8 +19,8 @@ const Users = new Schema({
     //required: true
   },
   playlists: {
-    type: [mongoose.model.Playlists]
-    //default: undefined
+    type: [mongoose.model.Playlists],
+    ref: 'Playlists'
   }
 })
 
