@@ -1,21 +1,26 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
-import "./playlists.scss"
-import Modal from 'react-modal';
-import { PlaylistContent } from "../../components/playlist_modal/playlist_modal";
+import './playlists.scss'
+import Modal from 'react-modal'
+import { PlaylistContent } from '../../components/playlist_modal/playlist_modal'
 import { authContext } from '../../../context/auth_context'
 import { ReactComponent as AddPlaylist } from './interface/add.svg'
-//'../../../../public/interface/playlists/add.svg'; // импортируем SVG-файл как React-компонент
+import { Player } from '../../components/player/player'
+import { tracksContext } from '../../../context/tracks_context'
+import { useHttp } from '../../../hooks/http.hook'
+
 export const PlaylistsPage = () => {
   ///////////////////////////////////
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
+  ////////// DATA FROM USEHTTP HOOK
+  const { loading, request, error, clear_error } = useHttp()
   ////////// DATA FROM DB FOR RENDER
   const [playlists, setPlaylists] = useState([])
-
+  ////////// REACT MODAL OBJECT
   Modal.setAppElement('#root')
-
+  ////////// 
   const [isPlaylistOpen, setPlaylistOpen] = useState(false)
 
   ////////// DATA FOR PASS TO MODAL
@@ -23,6 +28,46 @@ export const PlaylistsPage = () => {
   ////////// DATA FROM LOGIN CONTEXT
   const auth = useContext(authContext) 
   const token = auth.token
+  const id = auth.user_id
+  ////////// TRACK CONTEXT
+  const playingTracks = useContext(tracksContext)
+
+  ////////// PLAYER STATES
+  const [playerActive, setPlayerActive] = useState(false)
+
+  const [trackFinded, setTrackFinded] = useState(false)
+
+  //console.log("[PLAYLISTS] USER ID: ", id)
+  //console.log("[PLAYLISTS] TOKEN: ", token)
+    ////////////////////////////////////////
+  //// PLAYABLE TRACK HANDLER
+  ////////////////////////////////////////
+  const trackHandler = async (event, trackId) => {
+
+    try {
+      const track = await request('/library'+trackId, 'GET')
+      const getTrackList = await request('/get_tracks', 'GET')
+
+      console.log('CC'+getTrackList[0]['name'])
+
+      tracksContext.playableTrack = [track['track'][0]['track_id'], track['track'][0]['src']]
+      tracksContext.trackList = getTrackList
+
+      console.log(tracksContext)
+
+      setPlayerActive(true)
+      setTrackFinded(true)
+
+    } catch (error) { 
+      console.log("CLIENT FIND TRACK ERROR!\n", error)
+    }
+  }
+ 
+  ////////////////////////////////////////
+  //// PLAYER STATES
+  ////////////////////////////////////////
+
+
 
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
@@ -30,14 +75,12 @@ export const PlaylistsPage = () => {
 
   ////////// GETTING DATA FROM DB (BY USERID)
   useEffect( () => {
-    //console.log("TOKEN INTO CLIENT: ", token)
     // PAYLOAD EXTRACTION
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const payload = JSON.parse(window.atob(base64));
+    //const base64Url = token.split('.')[1]
+    //const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    //const payload = JSON.parse(window.atob(base64))
 
-    //axios.get('http://localhost:4000/playlists')
-    axios.get(`http://localhost:4000/playlists/user/${payload.userId}`)
+    axios.get(`http://localhost:4000/playlists/user/${id}`)
     .then(response => setPlaylists(response.data))
     //console.log("PLAYLISTS AFTER REQUEST: ", playlists)
   }, [])
@@ -77,31 +120,27 @@ export const PlaylistsPage = () => {
   ///////////////////////////////////
   //////////// RENDERING ////////////
   ///////////////////////////////////
-  //  src={require(playlist.img)}
+
   return(
   <div id="main" >
     <div className={ isPlaylistOpen ? "playlist_container blur" : "playlist_container"}>
         {playlists && playlists.length > 0 ? 
           (playlists.map(playlist =>
-            <div className="playlist_column">
-              <div className="playlist_card" onClick={() => openPlaylist(playlist)}>
+            <div className="playlist_column" key={playlist._id}>
+              <div className="playlist_card"  onClick={() => openPlaylist(playlist)}>
                 { playlist.img &&  <img className="playlist_image" src={playlist.img} alt="disk_img"/>}
                 <div className="playlist_title"></div>
                 <p className="playlist_track_name">{playlist.name}</p>
               </div>
             </div>
           )):(
-            <div className="new_playlist_card" onClick={() => addPlaylist()}>
-              <div className="add_playlist_btn">
-                <AddPlaylist />
-              </div>
-            </div>
+            <div></div>
           )
         } 
         <div className="playlist_column">
           <div className="new_playlist_card" onClick={() => addPlaylist()}>
             <div className="add_playlist_btn">
-              <AddPlaylist />
+              <AddPlaylist/>
             </div>
           </div>
         </div>
@@ -112,9 +151,11 @@ export const PlaylistsPage = () => {
           isOpen={isPlaylistOpen}
           onRequestClose={closePlaylist}
         >
-          <div className="playlist_modal_close_btn" onClick={closePlaylist}>x</div>
-          <PlaylistContent  playlist_data={playlistData}/>
+          <a className="playlist_modal_close_btn" onClick={closePlaylist}>&#10006;</a>
+          <PlaylistContent playlist_data={playlistData}/>
         </Modal>)}
+
+        <Player active={playerActive} setActive={setPlayerActive} trackFinded={trackFinded} setTrackFinded={setTrackFinded}></Player>
     </div>
   </div>
   )

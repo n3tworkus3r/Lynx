@@ -105,22 +105,14 @@
 }
 
 .playlist_modal_close_btn {
-  font-family: "lato", sans-serif;
-  color: #fff;
-  right: 15px;
-  padding: 5px 5px 10px 5px;
-
-  background-color: $main_color;
   position: absolute;
-  width: 15px;
-  height: 15px;
-  text-align: center;
-  border-radius: 25%;
+  color: #fff;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  padding: 5px 5px 5px 5px;
 }
 
 .playlist_modal_close_btn:hover {
-  background-color: $theme_color;
+  color: $theme_color;
 }
-
-
-

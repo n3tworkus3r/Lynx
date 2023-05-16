@@ -9,7 +9,7 @@ export const useRoutes = is_authenticated => {
   if (is_authenticated) {
     return (
       <Routes>
-        <Route exact path='/' element={<LibraryPage/>}/>
+        <Route exact path='/' element={<PlaylistsPage/>}/>
         <Route exact path='/library' element={<LibraryPage/>}/>
         <Route exact path='/playlists' element={<PlaylistsPage/>}/>
         <Route exact path='/player' element={<PlayerPage/>}/>

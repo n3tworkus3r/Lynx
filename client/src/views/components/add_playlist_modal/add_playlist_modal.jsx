@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import axios from 'axios'
+import { useNavigate  } from 'react-router-dom';
 
-import "./playlist_modal_content.scss"
+import "./add_playlist_modal_content.scss"
 
-export const PlaylistContent = ({playlist_data}) => {
+export const PlaylistContent = ({playlistData}) => {
   ///////////////////////////////////
   //////////// VARIABLES ////////////
   ///////////////////////////////////
+
+  //const navigate = useNavigate();
 
   const [playlist, setPlaylist] = useState([])
   
@@ -19,19 +22,21 @@ export const PlaylistContent = ({playlist_data}) => {
   /////// GETTING DATA ABOUT PLAYLIST
   useEffect( () => {
     //console.log("PLAYLIST FOR REQUEST FOR SERVER", playlist_data)
-    let playlist_id =  playlist_data._id
+    let playlistId =  playlistData._id
     //console.log("PLAYLIST_ID FOR SERVER", playlist_id)
     
     console.log("PLAYLIST FROM SERVER BY REQUEST: ",
-    axios.get(`http://localhost:4000/playlists/${playlist_id}`)
-      .then(response => {
-        const requested_playlist = response.data
-        console.log(requested_playlist)
+    axios.get(`http://localhost:4000/playlists/${playlistId}`)
+    .then(response => {
+        const requestedPlaylist = response.data
+        console.log(requestedPlaylist)
         
-        setPlaylist(requested_playlist)
-        setTracks(requested_playlist.tracks)
+        setPlaylist(requestedPlaylist)
+        setTracks(requestedPlaylist.tracks)
       }
     ))
+
+    
   }, [])
 
   
@@ -42,15 +47,17 @@ export const PlaylistContent = ({playlist_data}) => {
 //  console.log("PLAYLIST DATA: ", playlist_data)
 
 //  console.log(setPlaylistData())
+
   ///////////////////////////////////
   //////////// RENDERING ////////////
   ///////////////////////////////////
 
   return(
     <div className="playlist_modal_content">
-      <h1 className="playlist_modal_header">{playlist_data.name}</h1>
+
+      <h1 className="playlist_modal_header">{playlistData.name}</h1>
       {tracks.map(track =>
-        <div className="playlist_track" key={track._id}> {track.name} [ {track.artist} ] </div>
+        <div className="playlist_track">{track.name}</div>
       )}
     </div>
   )

@@ -7,12 +7,11 @@ const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 
 
-// /api/auth/register
+// /auth/register
 router.post(
   '/register', 
   [
-    check('email', 'Email is uncorrect!').isEmail(),
-    check('password', 'Minimum password lenght = 8').isLength( {min : 8})
+    //check('password', 'Minimum password lenght = 8').isLength( {min : 8})
   ],
   async (req,res) => {
   try {
@@ -55,12 +54,11 @@ router.post(
 })
 
 
-// /api/auth/login
+// /auth/login
 router.post(
   '/login', 
   [
-    check('email', 'Enter correct email!').normalizeEmail().isEmail(),
-    check('password', 'Enter password').exists()
+    //check('password', 'Enter password').exists()
   ],
   async (req,res) => {
   try {
@@ -91,17 +89,16 @@ router.post(
     }
 
     const token = jwt.sign(
-      { userId: user.id},
+      { id: user.id},
       config.get('jwt_secret'),
       {expiresIn: '1h'}
     )
-    res.json({ token, userId: user.id })
+    res.json({ token, id: user.id })
   } 
   catch (error) {
     res.status(500).json({message: "Something wrong!"})
   }
 
 })
-
 
 module.exports = router

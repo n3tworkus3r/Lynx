@@ -6,61 +6,72 @@ import { useMessage } from '../../../hooks/message.hook'
 import { authContext } from '../../../context/auth_context'
 
 export const LoginPage = () => { 
+  ///////////////////////////////////
+  //////////// VARIABLES ////////////
+  ///////////////////////////////////
 
   const message = useMessage()
   const auth = useContext(authContext) 
   const { loading, request, error, clear_error } = useHttp()
-  const [ form, set_form ] = useState({ email: '', password: '' })
+  const [ form, setForm ] = useState({ email: '', password: '' })
 
-  const change_handler = event => { 
-    set_form({ ...form, [event.target.name]: event.target.value })
+  ///////////////////////////////////
+  //////////// FUNCTIONS ////////////
+  ///////////////////////////////////
+
+  //////////// CHANGE FORM HANDLER
+  const changeFormHandler = event => { 
+    setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  ///////////// ERRORS VALIDATION /////////////
+  //////////// ERRORS VALIDATION
   useEffect( () => {
     message(error)
     clear_error()
   }, [ error, message, clear_error ])
-  
 
-  const register_handler = async () => {
+  //////////// SIGN UP VALIDATION
+  const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', {...form})
+      const data = await request('/auth/register', 'POST', {...form})
       console.log('DATA', data)
     } catch (error) { }
   }
 
-  
-  const login_handler = async () => {
-    
-  axios.post('/api/auth/login',  {...form})
-  .then(response => {
-    console.log("FORM DATA: ",{...form})
-    const token = response.data.token;
-    const id = response.data.id
-    auth.login(token, id)
-    console.log("TOKEN: ",response.data.token)
-    console.log("ID: ",response.data.id)
-    localStorage.setItem('token', token);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-//    try {
-//      const data = await request('/api/auth/login', 'POST', {...form})
-//      auth.login(data.token, data.id)
-//    } catch (error) { }
+  //////////// SIGN IN HANDLER
+  const loginHandler = async () => {
+    axios.post('/auth/login',  {...form})
+    .then(response => {
+      //console.log("[LOGIN] FORM DATA: ", {...form})
+      //console.log("[LOGIN] RESPONSE DATA: ",response.data)
+
+      const id = response.data.id
+      const token = response.data.token
+
+      auth.login(token, id) // CONTEXT FILLING
+
+      //console.log("[LOGIN] USER ID: ", id)
+      //console.log("[LOGIN] TOKEN: ", token)
+
+      localStorage.setItem('token', token)
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
+  ///////////////////////////////////
+  //////////// RENDERING ////////////
+  ///////////////////////////////////
 
   return(
     <div id="login_box">
       <div className="login_form">
         <span id="login_title">LYNX<br/></span>
-        <input  className="login_content" type="text" name="email" placeholder="Username" onChange={change_handler} required/>
-        <input className="login_content" type="password" name="password" placeholder="Password" onChange={change_handler} required/>
-        <button className="login_content" id="login_btn" type="submit" value="Login" onClick={login_handler}>Login</button>
-        <button className="login_content" id="login_btn" type="submit" value="Register" onClick={register_handler} disabled={loading}>Register</button>
+        <input  className="login_content" type="text" name="email" placeholder="Username" onChange={changeFormHandler} required/>
+        <input className="login_content" type="password" name="password" placeholder="Password" onChange={changeFormHandler} required/>
+        <button className="login_content" id="login_btn" type="submit" value="Login" onClick={loginHandler}>Login</button>
+        <button className="login_content" id="login_btn" type="submit" value="Register" onClick={registerHandler} disabled={loading}>Register</button>
       </div>
     </div>
   )
