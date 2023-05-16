@@ -85,7 +85,7 @@ export const LibraryPage = () => {
       <Carousel _class='items'>
       {Tracks.map(track =>
 
-          <div className="column">
+          <div className="column" key={track._id}>
 
             <div className="card" onClick={(event) => track_handler(event, track.track_id)}>
               {/*<div className="title">{track.track_id} </div>*/}

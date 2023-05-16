@@ -5,9 +5,9 @@ import Modal from 'react-modal'
 import { PlaylistContent } from '../../components/playlist_modal/playlist_modal'
 import { authContext } from '../../../context/auth_context'
 import { ReactComponent as AddPlaylist } from './interface/add.svg'
-import { Player } from '../../components/player/player'
-import { tracksContext } from '../../../context/tracks_context'
-import { useHttp } from '../../../hooks/http.hook'
+//import { Player } from '../../components/player/player'
+//import { tracksContext } from '../../../context/tracks_context'
+//import { useHttp } from '../../../hooks/http.hook'
 
 export const PlaylistsPage = () => {
   ///////////////////////////////////
@@ -26,10 +26,6 @@ export const PlaylistsPage = () => {
   const auth = useContext(authContext) 
   const token = auth.token
   const id = auth.user_id
-
-  //console.log("[PLAYLISTS] USER ID: ", id)
-  //console.log("[PLAYLISTS] TOKEN: ", token)
-
 
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
@@ -78,6 +74,13 @@ export const PlaylistsPage = () => {
     console.log('scroll')
   }
   //////////
+
+  ///////////////////////////////////
+  ////////////// DEBUG //////////////
+  ///////////////////////////////////
+  
+  //console.log("[PLAYLISTS] USER ID: ", id)
+  //console.log("[PLAYLISTS] TOKEN: ", token)
 
   ///////////////////////////////////
   //////////// RENDERING ////////////
