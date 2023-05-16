@@ -21,9 +21,9 @@ export const PlaylistContent = ({playlistData}) => {
 
   /////// GETTING DATA ABOUT PLAYLIST
   useEffect( () => {
-    //console.log("PLAYLIST FOR REQUEST FOR SERVER", playlist_data)
+    //console.log("[PLAYLIST MODAL] PLAYLIST FOR REQUEST FOR SERVER", playlist_data)
     let playlistId =  playlistData._id
-    //console.log("PLAYLIST_ID FOR SERVER", playlist_id)
+    //console.log("[PLAYLIST MODAL] PLAYLIST_ID FOR SERVER", playlist_id)
     
     console.log("PLAYLIST FROM SERVER BY REQUEST: ",
     axios.get(`http://localhost:4000/playlists/${playlistId}`)
@@ -57,7 +57,7 @@ export const PlaylistContent = ({playlistData}) => {
 
       <h1 className="playlist_modal_header">{playlistData.name}</h1>
       {tracks.map(track =>
-        <div className="playlist_track">{track.name}</div>
+        <div className="playlist_track" onClick={(event) => track_handler(event, track.track_id)} >{track.name}</div>
       )}
     </div>
   )

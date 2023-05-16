@@ -14,59 +14,21 @@ export const PlaylistsPage = () => {
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
-  ////////// DATA FROM USEHTTP HOOK
-  const { loading, request, error, clear_error } = useHttp()
   ////////// DATA FROM DB FOR RENDER
   const [playlists, setPlaylists] = useState([])
   ////////// REACT MODAL OBJECT
   Modal.setAppElement('#root')
-  ////////// 
+  ////////// PLAYLIST MODAL STATE
   const [isPlaylistOpen, setPlaylistOpen] = useState(false)
-
   ////////// DATA FOR PASS TO MODAL
   const [playlistData, setPlaylistData] = useState(null)
   ////////// DATA FROM LOGIN CONTEXT
   const auth = useContext(authContext) 
   const token = auth.token
   const id = auth.user_id
-  ////////// TRACK CONTEXT
-  const playingTracks = useContext(tracksContext)
-
-  ////////// PLAYER STATES
-  const [playerActive, setPlayerActive] = useState(false)
-
-  const [trackFinded, setTrackFinded] = useState(false)
 
   //console.log("[PLAYLISTS] USER ID: ", id)
   //console.log("[PLAYLISTS] TOKEN: ", token)
-    ////////////////////////////////////////
-  //// PLAYABLE TRACK HANDLER
-  ////////////////////////////////////////
-  const trackHandler = async (event, trackId) => {
-
-    try {
-      const track = await request('/library'+trackId, 'GET')
-      const getTrackList = await request('/get_tracks', 'GET')
-
-      console.log('CC'+getTrackList[0]['name'])
-
-      tracksContext.playableTrack = [track['track'][0]['track_id'], track['track'][0]['src']]
-      tracksContext.trackList = getTrackList
-
-      console.log(tracksContext)
-
-      setPlayerActive(true)
-      setTrackFinded(true)
-
-    } catch (error) { 
-      console.log("CLIENT FIND TRACK ERROR!\n", error)
-    }
-  }
- 
-  ////////////////////////////////////////
-  //// PLAYER STATES
-  ////////////////////////////////////////
-
 
 
   ///////////////////////////////////
@@ -154,8 +116,6 @@ export const PlaylistsPage = () => {
           <a className="playlist_modal_close_btn" onClick={closePlaylist}>&#10006;</a>
           <PlaylistContent playlist_data={playlistData}/>
         </Modal>)}
-
-        <Player active={playerActive} setActive={setPlayerActive} trackFinded={trackFinded} setTrackFinded={setTrackFinded}></Player>
     </div>
   </div>
   )
