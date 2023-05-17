@@ -10,7 +10,7 @@ const AudioControls = ({
   onPrevClick,
   onNextClick
 }) => (
-  <div className="audio_controls">
+  <div className="modal_audio_controls">
     <button type="button" className="prev_btn" aria-label="Previous" onClick={onPrevClick}>
       <Prev />
     </button>

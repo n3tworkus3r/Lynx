@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
 export const tracksContext = createContext( {
-  playableTrack: ['empty'],
+  playableTrackIndex: 0,
   trackList: ['empty']
 })

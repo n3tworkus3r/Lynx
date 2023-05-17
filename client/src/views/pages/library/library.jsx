@@ -78,7 +78,7 @@ export const LibraryPage = () => {
   return(
   <div id="main">
  
-    <Player active={playerActive} set_active={set_player_active} track_finded={track_finded} set_track_finded={set_track_finded}></Player>
+    {/*<Player active={playerActive} set_active={set_player_active} track_finded={track_finded} set_track_finded={set_track_finded}></Player>*/}
   
     <div className="row">
     <div className="carousel_container">
@@ -94,7 +94,7 @@ export const LibraryPage = () => {
             </div>
         </div>
       )}
-            </Carousel>
+      </Carousel>
     </div>
     </div>
   </div>

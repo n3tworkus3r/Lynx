@@ -1,0 +1,111 @@
+@import '../../styles/variables.scss';
+
+.player_modal {
+  //width: 80%;
+  height: 90%;
+}
+
+.time_line_modal_container {
+  background-color: $main_color;
+}
+
+.time_line_modal {
+  padding: 3px 3px 5px 3px;
+  width: 80%;
+  position: relative;
+  margin: auto;
+}
+
+.player_container_modal {
+  /*display: block;*/
+  position: relative;
+  justify-content: center;
+  bottom: 200px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /*height: 15%;**/
+  /*background-color: $main_color;*/
+  z-index: 1;
+  transform: scale(0);
+  /*margin-bottom: 20px;*/
+}
+
+.player_container_modal.active {
+  transform: scale(1);
+}
+
+.button_modal {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#close_player_btn_modal {
+  display: none;
+  position: absolute;
+  color: #fff;
+  top: 0;
+  right: 5px;
+  font-size: 20px;
+  padding: 5px 5px 5px 5px;
+}
+
+
+/*********************
+INPUT RANGE
+*********************/
+
+input[type=range]{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  background: $theme_color;
+}
+
+/*************************/
+
+.audio_controls_container {
+  background-color: $main_color;
+  margin-bottom: 10px;
+  max-height: 80%;
+}
+
+.modal_audio_controls {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 15px 0 15px;
+}
+
+.modal_audio_controls .prev_btn svg,
+.modal_audio_controls .next_btn svg {
+  width: 35px;
+  height: 35px;
+}
+
+.modal_audio_controls 
+.prev_btn:hover svg,
+.next_btn:hover svg,
+.play_btn:hover svg,
+.pause_btn:hover svg {
+  fill: $theme_color;
+}
+
+.modal_audio_controls 
+.prev_btn svg,
+.next_btn svg,
+.play_btn svg,
+.pause_btn svg  {
+  fill: #fff;
+}
+
+////////// PLAYER MODAL
+

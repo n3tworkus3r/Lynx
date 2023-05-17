@@ -7,10 +7,51 @@
   width: 100%;
   height: 100%;
   background-color: $background_color;
+
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 2fr;
+
+  //display: grid;
+  //grid-template-columns: 1fr 1fr; /* Две колонки равной ширины */
+  //grid-template-rows: auto auto; /* Автоматическая высота для левой и правой частей */
+  //grid-gap: 20px; /* Расстояние между ячейками */
+}
+
+
+.left_part {
+  grid-column: 1 / 2; /* Занимает первую колонку */
+  grid-row: 1 / 3; /* Занимает две строки */
+}
+
+.right_part {
+  grid-column: 2 / 2; /* Занимает вторую колонку */
+  grid-row: 1 / 3; /* Занимает две строки */
+
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.bottom_part {
+  grid-column: 1 / 3; /* Занимает обе колонки */
+  grid-row: 3 / 4; /* Занимает третью строку */
 }
 
 .playlist_modal_header {
   width: 100%;
+}
+
+.playlist_modal_header:hover {
+  color: $theme_color;
+}
+
+.playlist_modal_image {
+  padding: 1px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  height: 220px;
+  width: 220px;
 }
 
 .playlist_track {
@@ -19,7 +60,7 @@
   margin-top: 10px;
   width: 80%;
   height: 20px;
-  padding: 5px 5px ;
+  padding: 10px 10px ;
   background-color: $main_color;
 }
 

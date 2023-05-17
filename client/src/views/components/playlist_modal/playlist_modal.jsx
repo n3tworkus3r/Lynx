@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { useHttp } from '../../../hooks/http.hook'
 import './playlist_modal_content.scss'
-import { Player } from '../player/player'
+import { PlayerModal } from '../player_modal/player_modal'
 import { tracksContext } from '../../../context/tracks.context'
 
 export const PlaylistContent = ({playlist_data}) => {
@@ -17,14 +17,6 @@ export const PlaylistContent = ({playlist_data}) => {
   
   const [tracks, setTracks] = useState([])
 
-  ////////// TRACK CONTEXT
-  const playingTracks = useContext(tracksContext)
-
-  ////////// PLAYER STATES
-  const [playerActive, setPlayerActive] = useState(false)
-
-  const [trackFinded, setTrackFinded] = useState(false)
-
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
   /////////////////////////////////// 
@@ -35,41 +27,20 @@ export const PlaylistContent = ({playlist_data}) => {
     let playlist_id =  playlist_data._id
     //console.log("PLAYLIST_ID FOR SERVER", playlist_id)
     
-    console.log("PLAYLIST FROM SERVER BY REQUEST: ",
+    
     axios.get(`http://localhost:4000/playlists/${playlist_id}`)
       .then(response => {
         const requested_playlist = response.data
-        console.log(requested_playlist)
+        console.log("[PLAYLIST MODAL] PLAYLIST FROM SERVER: ", requested_playlist)
         
-        setPlaylist(requested_playlist)
         setTracks(requested_playlist.tracks)
+
+        setPlaylist(requested_playlist)
+
+        console.log("[PLAYLIST MODAL] TRACKS AFTER RESPONSE", requested_playlist.tracks)
       }
-    ))
+    )
   }, [])
-
-  
-
-  /////// PLAYABLE TRACK HANDLER
-  const trackHandler = async (event, trackId) => {
-
-  /*  try {
-      const track = await request('/library'+trackId, 'GET')
-      const getTrackList = await request('/get_tracks', 'GET')
-
-      console.log('CC'+getTrackList[0]['name'])
-
-      tracksContext.playableTrack = [track['track'][0]['track_id'], track['track'][0]['src']]
-      tracksContext.trackList = getTrackList
-
-      console.log(tracksContext)
-
-      setPlayerActive(true)
-      setTrackFinded(true)
-
-    } catch (error) { 
-      console.log("CLIENT FIND TRACK ERROR!\n", error)
-    }*/
-  }
  
   ////////////////////////////////////////
   //// PLAYER STATES
@@ -87,12 +58,29 @@ export const PlaylistContent = ({playlist_data}) => {
   //////////// RENDERING ////////////
   ///////////////////////////////////
 
+  
+
   return(
     <div className="playlist_modal_content">
-      <h1 className="playlist_modal_header">{playlist_data.name}</h1>
-      {tracks.map(track =>
-        <div className="playlist_track" onClick={(event) => trackHandler(event, track.track_id)} key={track._id}> {track.name} [ {track.artist} ] </div>
-      )}
+      <div className="left_part">
+        { playlist.img &&  <img className="playlist_modal_image" src={playlist.img} alt="disk_img"/>}
+      </div>
+
+      <div className="right_part">
+        <h1 className="playlist_modal_header">{playlist_data.name}</h1>
+        <PlayerModal tracks={tracks}></PlayerModal>
+        {console.log("[PLAYLIST MODAL] TRACKS{x} AFTER RESPONSE", tracks)}
+      </div>
+
+      <div className="bottom_part">
+        {tracks.map(track =>
+          <div className="playlist_track" key={track._id}> {track.name} [ {track.artist} ] </div>
+        )}
+       
+      </div>
+      
+     
+
 
     {/*<Player active={playerActive} setActive={setPlayerActive} trackFinded={trackFinded} setTrackFinded={setTrackFinded}></Player>*/}
     </div>
