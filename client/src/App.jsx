@@ -1,7 +1,7 @@
 import { useRoutes } from './routes';
 import React, { useState } from 'react';
 import { useAuth } from './hooks/auth.hook';
-import { authContext } from './context/auth_context';
+import { authContext } from './context/auth.context';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { NavbarBtn } from './views/components/navbar/navbar_button'
 import { Background } from './views/components/background/background';

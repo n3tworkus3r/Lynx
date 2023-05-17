@@ -3,7 +3,7 @@ import axios from 'axios'
 import './library.scss'
 import { useHttp } from '../../../hooks/http.hook'
 import { Player } from '../../components/player/player'
-import { tracksContext } from '../../../context/tracks_context'
+import { tracksContext } from '../../../context/tracks.context'
 import Carousel from '../../components/carousel/carousel'
 
 export const LibraryPage = () => {

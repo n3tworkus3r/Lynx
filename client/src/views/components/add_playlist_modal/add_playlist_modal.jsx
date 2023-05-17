@@ -4,41 +4,48 @@ import { useNavigate  } from 'react-router-dom';
 
 import "./add_playlist_modal_content.scss"
 
-export const PlaylistContent = ({playlistData}) => {
+export const AddPlaylistContent = ({playlistData}) => {
   ///////////////////////////////////
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [playlist, setPlaylist] = useState([])
-  
-  const [tracks, setTracks] = useState([])
+  const [formData, setFormData] = useState({})
 
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
   /////////////////////////////////// 
 
-  /////// GETTING DATA ABOUT PLAYLIST
-  useEffect( () => {
-    //console.log("[PLAYLIST MODAL] PLAYLIST FOR REQUEST FOR SERVER", playlist_data)
-    let playlistId =  playlistData._id
-    //console.log("[PLAYLIST MODAL] PLAYLIST_ID FOR SERVER", playlist_id)
-    
-    console.log("PLAYLIST FROM SERVER BY REQUEST: ",
-    axios.get(`http://localhost:4000/playlists/${playlistId}`)
-    .then(response => {
-        const requestedPlaylist = response.data
-        console.log(requestedPlaylist)
-        
-        setPlaylist(requestedPlaylist)
-        setTracks(requestedPlaylist.tracks)
-      }
-    ))
+  /////// FORM DATA HANDLE
 
-    
-  }, [])
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value })
+  };
+ 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    console.log(formData)
+    try {
+      const response = await fetch('/playlists/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
+      const data = await response.json();
+      console.log('Server responce :', data)
+
+      navigate(0); // Перенаправление на страницу курсов
+
+      console.log('Nav')
+    } catch (error) {
+      console.error('Error: ', error)
+    }
+  }
   
   ///////////////////////////////////
   ////////////// DEBUG //////////////
@@ -53,12 +60,17 @@ export const PlaylistContent = ({playlistData}) => {
   ///////////////////////////////////
 
   return(
-    <div className="playlist_modal_content">
+    <div className="add_playlist_modal_content">
+      <h1 className="add_playlist_modal_header"> NEW PLAYLIST</h1>
+        <form onSubmit={handleSubmit}>
+        <label for="playlist_name" className="add_playlist_label">Playlist name</label>
+        <input className="add_playlist_input" id="playlist_name" name="name" type="text" placeholder="Playlist name" onChange={handleInputChange} required/>
+      
+        <label for="playlist_description" className="add_playlist_label">Playlist description</label>
+        <textarea className="add_playlist_textarea" id="playlist_description" name="description" placeholder="Description" onChange={handleInputChange}/>
 
-      <h1 className="playlist_modal_header">{playlistData.name}</h1>
-      {tracks.map(track =>
-        <div className="playlist_track" onClick={(event) => track_handler(event, track.track_id)} >{track.name}</div>
-      )}
+        <button className="save_playlist_btn" type="submit">SAVE PLAYLIST</button>
+      </form>
     </div>
   )
 }

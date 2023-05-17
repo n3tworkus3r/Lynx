@@ -3,7 +3,7 @@ import './login.scss'
 import axios from 'axios'
 import { useHttp } from '../../../hooks/http.hook'
 import { useMessage } from '../../../hooks/message.hook'
-import { authContext } from '../../../context/auth_context'
+import { authContext } from '../../../context/auth.context'
 
 export const LoginPage = () => { 
   ///////////////////////////////////

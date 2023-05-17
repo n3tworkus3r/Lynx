@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { authContext } from '../../../context/auth_context'
+import { authContext } from '../../../context/auth.context'
 import axios from 'axios'
 export const NavbarContent = ({active, set_active}) => {
   ///////////////////////////////////

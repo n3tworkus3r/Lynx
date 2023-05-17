@@ -82,12 +82,8 @@
   background-color: $theme_color;
 }
 
-.add_playlist_btn {
- //
-}
-
 ////////// PLAYLIST MODAL
-/// 
+
 .playlist_modal {
   position: fixed;
   top: 50%;
@@ -108,11 +104,42 @@
   position: absolute;
   color: #fff;
   top: 15px;
-  right: 15px;
+  right: 20px;
   font-size: 30px;
   padding: 5px 5px 5px 5px;
 }
 
 .playlist_modal_close_btn:hover {
+  color: $theme_color;
+}
+
+////////// ADD PLAYLIST MODAL
+
+.add_playlist_modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $background_color;
+  padding: 20px;
+  width: 60%;
+  min-height: 80%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.playlist_modal_overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.add_playlist_modal_close_btn {
+  position: absolute;
+  color: #fff;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  padding: 5px 5px 5px 5px;
+}
+
+.add_playlist_modal_close_btn:hover {
   color: $theme_color;
 }

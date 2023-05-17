@@ -63,8 +63,6 @@ router.get('/playlists/:id', cors(corsOptions), async (req,res) => {
     .catch(err => {
       console.error(err);
     });
-
-    //res.status(200).json(playlist)
 })
 
 /////////////////////////////////////////
@@ -76,10 +74,9 @@ router.post('/playlists/add', cors(corsOptions), async (req,res) => {
   console.log(req.body)
   const playlist = new Playlists({
       name: req.body.name, 
-      description: req.body.description,
-      subject: req.body.subjects,
-      section: req.body.sections,
-      class: req.body.classes
+      owner: req.body.owner,
+      img: req.body.img,
+      tracks: req.body.tracks
   })
 
   try{ // Сохранение плейлиста в БД
@@ -101,23 +98,20 @@ router.post('/playlists/edit', cors(corsOptions), async (req,res) => {
   console.log("PLAYLIST REQ BODY", req.body)
 
   const new_playlist = new Playlists({
-      id: req.body.id, 
-      name: req.body.name, 
-      description: req.body.description,
-      subject: req.body.subject,
-      section: req.body.section,
-      class: req.body.classes
+    name: req.body.name, 
+    owner: req.body.owner,
+    img: req.body.img,
+    tracks: req.body.tracks
   })
   
 //  console.log("PLAULIST AFTER REQ", new_playlist)
 
   try{ // Редактирование курса
     Playlists.findOneAndUpdate({ id: new_playlist.id }, {
-        name: new_playlist.name, 
-        description: new_playlist.description,
-        subject: new_playlist.subject,
-        section: new_playlist.section,
-        class: new_playlist.class
+        name: req.body.name, 
+        owner: req.body.owner,
+        img: req.body.img,
+        tracks: req.body.tracks
       }, { new: false }, function(err, new_playlist) {
       if (err) {
         console.log('Ошибка при замене курса:', err);

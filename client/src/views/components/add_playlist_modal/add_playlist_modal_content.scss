@@ -1,34 +1,130 @@
 @import '../../styles/variables.scss';
 @import "../../styles/general.scss";
 
-.playlist_modal_content {
+.add_playlist_modal_content {
   font-family: "lato", sans-serif;
   color: #fff;
   width: 100%;
-  height: 100%;
+  height: 80%;
   background-color: $background_color;
 }
 
-.playlist_modal_header {
+.add_playlist_modal_header {
   width: 100%;
 }
 
+.add_playlist_modal_header:hover {
+  color: $theme_color;
+}
 
+.add_playlist_label:hover {
+  color: $theme_color;
+}
 
-.playlist_track {
-  position: relative;
-  margin: auto;
-  margin-top: 10px;
-  width: 80%;
-  height: 20px;
-  padding: 5px 5px ;
-  background-color: $main_color;
+.add_playlis_modal_overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .playlist_track:hover {
   background-color: $theme_color;
 }
 
+.add_playlist_validate {
+  color: $main_color;
+}
 
+.add_playlist_filter {
+  border-radius: none;
+}
+
+button {
+  padding: 10px 10px;
+}
+
+.save_playlist_btn {
+  display: block;
+  position: relative;
+  //margin-left: 7%;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  background-color: $background_color;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.save_playlist_btn:hover {
+  background-color: $theme_color;
+}
+
+.add_playlist_textarea {
+  width: 100%;
+  padding: 12px;
+
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  border-radius: none;
+}
+
+.add_playlist_textarea:hover {
+  color: #fff;
+  background-color: $main_color;
+}
+
+.add_playlist_select {
+  width: 100%;
+  padding: 12px;
+
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  border-radius: none;
+}
+
+.add_playlist_input {
+  width: 100%;
+  padding: 12px;
+  
+  //background-color: $main_color;
+  //font-weight: 700;
+
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  border-radius: none;
+}
+
+.add_playlist_input:hover {
+  color: #fff;
+  background-color: $main_color;
+}
+
+//input[type="text"],
+//select,
+//textarea
+.modal_input {
+  width: 100%;
+  padding: 12px;
+
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  border-radius: none;
+}
+
+input[type="submit"] {
+  background-color: $theme_color;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
 
 

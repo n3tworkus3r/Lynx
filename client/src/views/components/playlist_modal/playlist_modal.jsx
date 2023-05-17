@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useHttp } from '../../../hooks/http.hook'
 import './playlist_modal_content.scss'
 import { Player } from '../player/player'
-import { tracksContext } from '../../../context/tracks_context'
+import { tracksContext } from '../../../context/tracks.context'
 
 export const PlaylistContent = ({playlist_data}) => {
   ///////////////////////////////////
@@ -52,7 +52,7 @@ export const PlaylistContent = ({playlist_data}) => {
   /////// PLAYABLE TRACK HANDLER
   const trackHandler = async (event, trackId) => {
 
-    try {
+  /*  try {
       const track = await request('/library'+trackId, 'GET')
       const getTrackList = await request('/get_tracks', 'GET')
 
@@ -68,7 +68,7 @@ export const PlaylistContent = ({playlist_data}) => {
 
     } catch (error) { 
       console.log("CLIENT FIND TRACK ERROR!\n", error)
-    }
+    }*/
   }
  
   ////////////////////////////////////////
@@ -94,7 +94,7 @@ export const PlaylistContent = ({playlist_data}) => {
         <div className="playlist_track" onClick={(event) => trackHandler(event, track.track_id)} key={track._id}> {track.name} [ {track.artist} ] </div>
       )}
 
-    <Player active={playerActive} setActive={setPlayerActive} trackFinded={trackFinded} setTrackFinded={setTrackFinded}></Player>
+    {/*<Player active={playerActive} setActive={setPlayerActive} trackFinded={trackFinded} setTrackFinded={setTrackFinded}></Player>*/}
     </div>
   )
 }

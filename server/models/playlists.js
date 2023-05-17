@@ -5,6 +5,9 @@ const Playlists = new Schema({
   name: {
     type: String
   },
+  description: {
+    type: String
+  },
   owner: {
     type: String
   },

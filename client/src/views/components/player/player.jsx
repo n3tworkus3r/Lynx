@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react"
 import AudioControls from "./player_controls"
 //import Backdrop from "./Backdrop"
 import "./player.scss"
-import { tracksContext } from '../../../context/tracks_context'
+import { tracksContext } from '../../../context/tracks.context'
 
 export const Player = ({active, set_active, track_finded }) => {
   // State

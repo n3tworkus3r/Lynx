@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import './playlists.scss'
 import Modal from 'react-modal'
+import { AddPlaylistContent } from '../../components/add_playlist_modal/add_playlist_modal'
 import { PlaylistContent } from '../../components/playlist_modal/playlist_modal'
-import { authContext } from '../../../context/auth_context'
+import { authContext } from '../../../context/auth.context'
 import { ReactComponent as AddPlaylist } from './interface/add.svg'
 //import { Player } from '../../components/player/player'
 //import { tracksContext } from '../../../context/tracks_context'
@@ -22,6 +23,10 @@ export const PlaylistsPage = () => {
   const [isPlaylistOpen, setPlaylistOpen] = useState(false)
   ////////// DATA FOR PASS TO MODAL
   const [playlistData, setPlaylistData] = useState(null)
+
+  ////////// ADD PLAYLIST MODAL STATE
+  const [isAddPlaylistOpen, setAddPlaylistOpen] = useState(false)
+  
   ////////// DATA FROM LOGIN CONTEXT
   const auth = useContext(authContext) 
   const token = auth.token
@@ -42,13 +47,8 @@ export const PlaylistsPage = () => {
     .then(response => setPlaylists(response.data))
     //console.log("PLAYLISTS AFTER REQUEST: ", playlists)
   }, [])
-  //////////
-  
-  ////////// ADD NEW PLAYLIST HANDLER
-  const addPlaylist = () => {
 
-  }
-  //////////
+  //////////////////// PLAYLIST MODAL
 
   ////////// VIEWING PLAYLIST MODAL WINDOW
   const openPlaylist = (playlist) => {
@@ -60,6 +60,20 @@ export const PlaylistsPage = () => {
     setPlaylistOpen(false)
   }
   //////////
+
+
+  //////////////////// ADD PLAYLIST MODAL
+  
+  ////////// ADD NEW PLAYLIST HANDLER
+  const addPlaylist = () => {
+    setAddPlaylistOpen(true) // OPEN MODAL
+  }
+
+  const closeAddPlaylist = () => {
+    setAddPlaylistOpen(false)
+  }
+  //////////
+
 
   ////////// MOUSE SCROLL HANDLER
   useEffect(() => {
@@ -118,6 +132,16 @@ export const PlaylistsPage = () => {
         >
           <a className="playlist_modal_close_btn" onClick={closePlaylist}>&#10006;</a>
           <PlaylistContent playlist_data={playlistData}/>
+        </Modal>)}
+
+        {addPlaylist && (<Modal 
+          className="add_playlist_modal"
+          overlayClassName="playlist_modal_overlay"
+          isOpen={isAddPlaylistOpen}
+          onRequestClose={closeAddPlaylist}
+        >
+          <a className="playlist_modal_close_btn" onClick={closeAddPlaylist}>&#10006;</a>
+          <AddPlaylistContent playlist_data={playlistData}/>
         </Modal>)}
     </div>
   </div>
