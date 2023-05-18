@@ -93,7 +93,7 @@ export const PlayerModal = () => {
     clearInterval(intervalRef.current)
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
-        toNextTrack()
+        toNextTrack(playableTrackIndex+1)
       } else {
         setTrackProgress(audioRef.current.currentTime)
       }
@@ -120,9 +120,8 @@ export const PlayerModal = () => {
   return (
   <div className="player_container_modal active">
     <div className="player_modal">
-        
-        <div className="audio_controls_container">
-          <div className="track_info_modal"> {currentTrack.name}</div>
+      <div className="audio_controls_container">
+        <div className="track_info_modal"> {currentTrack.name}</div>
 
           <div className="time_line_modal_container">
             <div className="time_line">
