@@ -6,12 +6,14 @@ import { AddPlaylistContent } from '../../components/add_playlist_modal/add_play
 import { PlaylistContent } from '../../components/playlist_modal/playlist_modal'
 import { authContext } from '../../../context/auth.context'
 import { ReactComponent as AddPlaylist } from './interface/add.svg'
-
+import { tracksContext } from '../../../context/tracks.context'
 
 export const PlaylistsPage = () => {
   ///////////////////////////////////
   //////////// VARIABLES ////////////
   ///////////////////////////////////
+
+  const { trackList, isPlaying, setIsPlaying, currentTrack, setCurrentTrack, playableTrackIndex, setPlayableTrackIndex, audioRef } = useContext(tracksContext)
 
   ////////// DATA FROM DB FOR RENDER
   const [playlists, setPlaylists] = useState([])
@@ -56,6 +58,9 @@ export const PlaylistsPage = () => {
 
   const closePlaylist = () => {
     setPlaylistOpen(false)
+    setIsPlaying(false)
+    console.log("[PLAYLISTS] CLOSE PLAYLIST: ")
+    audioRef.current.pause()
   }
   //////////
 

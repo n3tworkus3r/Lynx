@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useRef } from 'react'
 
 export const tracksContext = createContext()
 
@@ -7,6 +7,8 @@ export const TracksProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
   const [currentTrack, setCurrentTrack] = useState([])
+
+  const audioRef = useRef(new Audio())
 
   return (
     <tracksContext.Provider
@@ -21,7 +23,9 @@ export const TracksProvider = ({ children }) => {
         setIsPlaying,
 
         playableTrackIndex,
-        setPlayableTrackIndex
+        setPlayableTrackIndex,
+
+        audioRef
       }}
     >
       {children}
