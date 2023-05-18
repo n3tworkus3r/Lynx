@@ -10,9 +10,6 @@ export const Player = ({ tracks }) => {
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
-
-
-
   const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
   const [trackList, setTrackList] = useState(tracks)
   const [active, setActive ] = useState(false)
@@ -84,47 +81,6 @@ export const Player = ({ tracks }) => {
     startTimer()
   }
   ////////////
-
-
-  /*
-
-
-
-
-
-
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play()
-      startTimer()
-    } else {
-      audioRef.current.pause()
-    }
-  }, [isPlaying])
-
-  useEffect(() => {
-
-    audioRef.current.pause();
-    audioRef.current = new Audio(tracks[playableTrackIndex]['src']) // //"http://127.0.0.1:8080/KLOUD - QUESTION.mp3"
-    setTrackProgress(audioRef.current.currentTime)
-
-    if (isReady.current) {
-      audioRef.current.play()
-      setIsPlaying(true)
-      startTimer()
-    } else {
-      // Set the isReady ref as true for the next pass
-      isReady.current = true;
-    }
-  }, [playableTrackIndex]);
-
-  useEffect(() => {
-    // Pause and clean up on unmount
-    return () => {
-      audioRef.current.pause()
-      clearInterval(intervalRef.current)
-    };
-  }, []);*/
 
   return (
   <div className="player_container active"> {/*{active ? "player_container active" : "player_container"}>*/}

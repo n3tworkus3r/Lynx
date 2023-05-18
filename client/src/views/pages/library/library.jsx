@@ -11,7 +11,7 @@ export const LibraryPage = () => {
   //// TRACK CONTEXT
   ////////////////////////////////////////
 
-  const tracks_context = useContext(tracksContext) 
+  //const tracks_context = useContext(tracksContext) 
 
   ////////////////////////////////////////
   //// GETTING DATA FROM DB
@@ -48,10 +48,10 @@ export const LibraryPage = () => {
 
       console.log('CC'+get_track_list[0]['name'])
 
-      tracks_context.playable_track = [track['track'][0]['track_id'], track['track'][0]['src']]
-      tracks_context.track_list = get_track_list
+      //tracks_context.playable_track = [track['track'][0]['track_id'], track['track'][0]['src']]
+      //tracks_context.track_list = get_track_list
 
-      console.log(tracks_context)
+      //console.log(tracks_context)
 
       set_player_active(true)
       set_track_finded(true)
