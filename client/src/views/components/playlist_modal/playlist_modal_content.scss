@@ -65,6 +65,10 @@
   font-family: math;
 }
 
+.track_active {
+  background-color: $theme_color;
+}
+
 .playlist_track:hover {
   background-color: $theme_color;
 }

@@ -32,6 +32,9 @@ export const PlaylistsPage = () => {
   const token = auth.token
   const id = auth.user_id
 
+
+  const [trackActive, setTrackActive] = useState(null)
+  
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
   ///////////////////////////////////
@@ -59,11 +62,10 @@ export const PlaylistsPage = () => {
   const closePlaylist = () => {
     setPlaylistOpen(false)
     setIsPlaying(false)
-    console.log("[PLAYLISTS] CLOSE PLAYLIST: ")
     if(isPlaying) {
       setIsPlaying(true)
     }
-
+    //console.log("[PLAYLISTS] CLOSE PLAYLIST: ")
     //audioRef.current.pause()
   }
   //////////
@@ -102,7 +104,7 @@ export const PlaylistsPage = () => {
   
   //console.log("[PLAYLISTS] USER ID: ", id)
   //console.log("[PLAYLISTS] TOKEN: ", token)
-
+  //console.log("[PLAYLISTS] CURRENT TRACK: ", currentTrack)
   ///////////////////////////////////
   //////////// RENDERING ////////////
   ///////////////////////////////////

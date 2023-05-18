@@ -11,9 +11,14 @@ export const PlaylistContent = ({playlist_data}) => {
 
   ////////// DATA FROM USEHTTP HOOK
 
-  const { trackList, setTrackList, isPlaying, setIsPlaying } = useContext(tracksContext)
-
-
+  const {
+    trackList, setTrackList,
+    currentTrack, setCurrentTrack, 
+    playableTrackIndex, setPlayableTrackIndex, 
+    isPlaying, setIsPlaying, 
+    trackProgress, setTrackProgress,
+    audioRef 
+  } = useContext(tracksContext)
 
   const [playlist, setPlaylist] = useState([])
   
@@ -79,7 +84,13 @@ export const PlaylistContent = ({playlist_data}) => {
 
       <div className="bottom_part">
         {tracks.map(track =>
-          <div className="playlist_track" onClick={(event) => trackHandler(event, track.track_id)} key={track._id}> {track.name} [ {track.artist} ] </div>
+          <div 
+          className={ currentTrack._id === track._id ? 'playlist_track track_active' : 'playlist_track' }
+          onClick={(event) => trackHandler(event)} 
+          key={track._id}
+          > 
+            {track.name} [ {track.artist} ] 
+          </div>
         )}
       </div>
     </div>
