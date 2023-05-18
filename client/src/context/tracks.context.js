@@ -7,6 +7,7 @@ export const TracksProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
   const [currentTrack, setCurrentTrack] = useState([])
+  const [trackProgress, setTrackProgress] = useState(false)
 
   const audioRef = useRef(new Audio())
 
@@ -19,11 +20,14 @@ export const TracksProvider = ({ children }) => {
         currentTrack, 
         setCurrentTrack,
 
+        playableTrackIndex,
+        setPlayableTrackIndex,
+
         isPlaying,
         setIsPlaying,
 
-        playableTrackIndex,
-        setPlayableTrackIndex,
+        trackProgress, 
+        setTrackProgress,
 
         audioRef
       }}

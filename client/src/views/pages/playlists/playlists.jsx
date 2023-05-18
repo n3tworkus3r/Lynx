@@ -60,7 +60,11 @@ export const PlaylistsPage = () => {
     setPlaylistOpen(false)
     setIsPlaying(false)
     console.log("[PLAYLISTS] CLOSE PLAYLIST: ")
-    audioRef.current.pause()
+    if(isPlaying) {
+      setIsPlaying(true)
+    }
+
+    //audioRef.current.pause()
   }
   //////////
 

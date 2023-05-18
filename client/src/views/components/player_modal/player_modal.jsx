@@ -12,9 +12,14 @@ export const PlayerModal = () => {
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
-  const { trackList, isPlaying, setIsPlaying, currentTrack, setCurrentTrack, playableTrackIndex, setPlayableTrackIndex, audioRef } = useContext(tracksContext)
-
-  const [trackProgress, setTrackProgress] = useState(false)
+  const {
+    trackList, 
+    currentTrack, setCurrentTrack, 
+    playableTrackIndex, setPlayableTrackIndex, 
+    isPlaying, setIsPlaying, 
+    trackProgress, setTrackProgress,
+    audioRef 
+  } = useContext(tracksContext)
 
   //const audioRef = useRef(new Audio())
   const intervalRef = useRef()
