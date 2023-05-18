@@ -17,6 +17,8 @@ pids
 *.seed
 *.pid.lock
 
+/dump
+
 *.docx
 *.mp3
 *.flac

@@ -11,7 +11,9 @@ export const PlaylistContent = ({playlist_data}) => {
 
   ////////// DATA FROM USEHTTP HOOK
 
-  const { trackList, setTrackList } = useContext(tracksContext) || {}
+  const { trackList, setTrackList, isPlaying, setIsPlaying } = useContext(tracksContext)
+
+
 
   const [playlist, setPlaylist] = useState([])
   
@@ -32,16 +34,15 @@ export const PlaylistContent = ({playlist_data}) => {
       .then(response => {
         const requested_playlist = response.data
         //console.log("[PLAYLIST MODAL] PLAYLIST FROM SERVER: ", requested_playlist)
-        
+
         setTracks(requested_playlist.tracks)
         setPlaylist(requested_playlist)
         
-        //console.log("[PLAYLIST MODAL] TRACKS FROM CONTEXT BEFORE", trackList)
-        //console.log("[PLAYLIST MODAL] TRACKS DATA", requested_playlist.tracks)
-        //addTrack(requested_playlist.tracks)
+        //console.log("[PLAYLIST MODAL] TRACKS DATA FROM SERVER: ", requested_playlist.tracks)
+
         setTrackList(requested_playlist.tracks)
-        //console.log("[PLAYLIST MODAL] TRACKS FROM CONTEXT AFTER", trackList)
-        //console.log("[PLAYLIST MODAL] TRACKS AFTER RESPONSE", requested_playlist.tracks)
+
+        //console.log("[PLAYLIST MODAL] TRACKS FROM CONTEXT: ", trackList)
       }
     )
   }, [])
@@ -55,6 +56,7 @@ export const PlaylistContent = ({playlist_data}) => {
       //console.log("[PLAYLIST MODAL] TRACK INTO HANDLER: ", tracks)
       setPlayerActive(true)
       setTrackFinded(true)
+      console.log("[PLAYLIST MODAL] TRACKLIST FROM CONTEXT: ", trackList)
     } catch (error) { 
       console.log("CLIENT FIND TRACK ERROR!\n", error)
     }

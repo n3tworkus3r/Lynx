@@ -1,35 +1,29 @@
 import React, { createContext, useState } from 'react'
 
-export const tracksContext = createContext();
+export const tracksContext = createContext()
 
-export const TrackProvider = ({ children }) => {
+export const TracksProvider = ({ children }) => {
   const [trackList, setTrackList] = useState([])
-  const [selectedIndex, setSelectedIndex] = useState(null)
-
-  const addTrack = (track) => {
-    setTrackList([...trackList, track])
-  }
-
-  const removeTrack = (index) => {
-    const updatedTrackList = trackList.filter((_, i) => i !== index)
-    setTrackList(updatedTrackList)
-  }
-
-  const selectTrack = (index) => {
-    setSelectedIndex(index)
-  }
-
-  const contextValue = {
-    trackList,
-    //selectedIndex,
-    //addTrack,
-    //removeTrack,
-    //selectTrack,
-    setTrackList
-  }
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
+  const [currentTrack, setCurrentTrack] = useState([])
 
   return (
-    <tracksContext.Provider value={contextValue}>
+    <tracksContext.Provider
+      value={{
+        trackList,
+        setTrackList,
+
+        currentTrack, 
+        setCurrentTrack,
+
+        isPlaying,
+        setIsPlaying,
+
+        playableTrackIndex,
+        setPlayableTrackIndex
+      }}
+    >
       {children}
     </tracksContext.Provider>
   )

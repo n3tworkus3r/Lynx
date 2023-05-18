@@ -6,9 +6,7 @@ import { AddPlaylistContent } from '../../components/add_playlist_modal/add_play
 import { PlaylistContent } from '../../components/playlist_modal/playlist_modal'
 import { authContext } from '../../../context/auth.context'
 import { ReactComponent as AddPlaylist } from './interface/add.svg'
-//import { Player } from '../../components/player/player'
-//import { tracksContext } from '../../../context/tracks_context'
-//import { useHttp } from '../../../hooks/http.hook'
+
 
 export const PlaylistsPage = () => {
   ///////////////////////////////////

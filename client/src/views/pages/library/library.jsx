@@ -2,9 +2,7 @@ import React, { useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import './library.scss'
 import { useHttp } from '../../../hooks/http.hook'
-import { Player } from '../../components/player/player'
-import { tracksContext } from '../../../context/tracks.context'
-import Carousel from '../../components/carousel/carousel'
+//import Carousel from '../../components/carousel/carousel'
 
 export const LibraryPage = () => {
   ////////////////////////////////////////
@@ -82,7 +80,7 @@ export const LibraryPage = () => {
   
     <div className="row">
     <div className="carousel_container">
-      <Carousel _class='items'>
+      {/*<Carousel _class='items'>*/}
       {Tracks.map(track =>
 
           <div className="column" key={track._id}>
@@ -94,7 +92,7 @@ export const LibraryPage = () => {
             </div>
         </div>
       )}
-      </Carousel>
+      {/*</div></Carousel>*/}
     </div>
     </div>
   </div>

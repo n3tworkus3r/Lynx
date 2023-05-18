@@ -1,28 +1,20 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
-import AudioControls from "../player/player_controls"
-import { ReactComponent as Play } from "../player/assets/play.svg";
-import { ReactComponent as Pause } from "../player/assets/pause.svg";
-import { ReactComponent as Next } from "../player/assets/next.svg";
-import { ReactComponent as Prev } from "../player/assets/prev.svg";
-
-//import Backdrop from "./Backdrop"
+import { ReactComponent as Play } from "../player_controls/play.svg"
+import { ReactComponent as Pause } from "../player_controls/pause.svg"
+import { ReactComponent as Next } from "../player_controls/next.svg"
+import { ReactComponent as Prev } from "../player_controls/prev.svg"
+import { tracksContext } from '../../../context/tracks.context'
 import "./player_modal.scss"
-//import { tracksContext } from '../../../context/tracks.context'
 
-export const PlayerModal = ({ tracks }) => {
+
+export const PlayerModal = () => {
   ///////////////////////////////////
   //////////// VARIABLES ////////////
   ///////////////////////////////////
 
-  const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
+  const { trackList, isPlaying, setIsPlaying, currentTrack, setCurrentTrack, playableTrackIndex, setPlayableTrackIndex } = useContext(tracksContext)
 
-
-  //console.log("[PLAYER] TRACKS FROM MODAL", tracks)
-  //console.log("[PLAYER] TRACKS FROM CONTEXT", tracksContext.trackList)
-  const [currentTrack, setCurrentTrack] = useState([])
   const [trackProgress, setTrackProgress] = useState(false)
-
-  const [isPlaying, setIsPlaying] = useState(false) // FOR CHANGE PLAY-PAUSE SVG
 
   const audioRef = useRef(new Audio())
   const intervalRef = useRef()
@@ -41,10 +33,12 @@ export const PlayerModal = ({ tracks }) => {
   const playTrackHandler = (index) => {
     if(index >= 0) {
       //console.log("[PLAYER] TRACK INDEX: ", index)
-      //console.log("[PLAYER] TRACK SRC: ", tracks[index].src)
+      //console.log("[PLAYER] TRACK SRC: ", trackList[index].src)
       audioRef.current.pause()
-      audioRef.current = new Audio(tracks[index].src)
-      setCurrentTrack(tracks[index])
+      audioRef.current = new Audio(trackList[index].src)
+      setCurrentTrack(trackList[index])
+
+      console.log("[PLAYER] TRACKLIST FROM CONTEXT: ", trackList)
     }
 
     setTrackProgress(audioRef.current.currentTime)
@@ -72,8 +66,8 @@ export const PlayerModal = ({ tracks }) => {
   //////////// CHANGE TRACK NUMBER (PREV)
   const toPrevTrack = (index) => {
     if (index < 0) {
-      setPlayableTrackIndex(tracks.length-1)
-      playTrackHandler(tracks.length-1)
+      setPlayableTrackIndex(trackList.length-1)
+      playTrackHandler(trackList.length-1)
     } else {
       setPlayableTrackIndex(index)
       playTrackHandler(index)
@@ -82,8 +76,8 @@ export const PlayerModal = ({ tracks }) => {
 
   //////////// CHANGE TRACK NUMBER (NEXT)
   const toNextTrack = (index) => {
-    //console.log("[PLAYER] TRACKLIST LEN: ", tracks.length)
-    if (index == (tracks.length)) {
+    //console.log("[PLAYER] TRACKLIST LEN: ", trackList.length)
+    if (index == (trackList.length)) {
       //console.log("[PLAYER] LEN LIMIT REACHED")
       setPlayableTrackIndex(0)
       playTrackHandler(0)
