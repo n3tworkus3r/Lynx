@@ -15,14 +15,11 @@ export const PlayerModal = ({ tracks }) => {
   ///////////////////////////////////
 
   const [playableTrackIndex, setPlayableTrackIndex] = useState(0)
-  const [trackList, setTrackList] = useState(tracks)
-  const [active, setActive ] = useState(false)
 
-  const [currentTrack, setCurrentTrack] = useState([])
 
   //console.log("[PLAYER] TRACKS FROM MODAL", tracks)
   //console.log("[PLAYER] TRACKS FROM CONTEXT", tracksContext.trackList)
-
+  const [currentTrack, setCurrentTrack] = useState([])
   const [trackProgress, setTrackProgress] = useState(false)
 
   const [isPlaying, setIsPlaying] = useState(false) // FOR CHANGE PLAY-PAUSE SVG
@@ -47,6 +44,7 @@ export const PlayerModal = ({ tracks }) => {
       //console.log("[PLAYER] TRACK SRC: ", tracks[index].src)
       audioRef.current.pause()
       audioRef.current = new Audio(tracks[index].src)
+      setCurrentTrack(tracks[index])
     }
 
     setTrackProgress(audioRef.current.currentTime)
@@ -128,7 +126,19 @@ export const PlayerModal = ({ tracks }) => {
   return (
   <div className="player_container_modal active">
     <div className="player_modal">
+        
         <div className="audio_controls_container">
+          <div className="track_info_modal"> {currentTrack.name}</div>
+
+          <div className="time_line_modal_container">
+            <div className="time_line">
+              <input type="range" value={trackProgress} step="1" min="0" 
+              max={duration ? duration : `${duration}`} className="progress_bar" 
+              list="custom-list"
+              onChange={(e) => onScrub(e.target.value)} onMouseUp={onScrubEnd} onKeyUp={onScrubEnd} />
+            </div>
+          </div>
+
           <div className="modal_audio_controls">
             <button type="button" className="prev_btn" aria-label="Previous" onClick={() => toPrevTrack(playableTrackIndex-1)}>
               <Prev />
@@ -145,14 +155,6 @@ export const PlayerModal = ({ tracks }) => {
             <button type="button" className="next_btn" aria-label="Next" onClick={() => toNextTrack(playableTrackIndex+1)}>
               <Next />
             </button>
-          </div>
-        </div>
-        <div className="time_line_modal_container">
-          <div className="time_line">
-            <input type="range" value={trackProgress} step="1" min="0" 
-            max={duration ? duration : `${duration}`} className="progress_bar" 
-            list="custom-list"
-            onChange={(e) => onScrub(e.target.value)} onMouseUp={onScrubEnd} onKeyUp={onScrubEnd} />
           </div>
         </div>
       </div>

@@ -56,12 +56,13 @@
 
 .playlist_track {
   position: relative;
-  margin: auto;
+  margin-right: 15px;
   margin-top: 10px;
-  width: 80%;
+  //width: 80%;
   height: 20px;
   padding: 10px 10px ;
   background-color: $main_color;
+  font-family: math;
 }
 
 .playlist_track:hover {

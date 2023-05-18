@@ -6,7 +6,7 @@
 }
 
 .time_line_modal_container {
-  background-color: $main_color;
+  //background-color: $main_color;
 }
 
 .time_line_modal {
@@ -42,14 +42,13 @@
   cursor: pointer;
 }
 
-#close_player_btn_modal {
-  display: none;
-  position: absolute;
-  color: #fff;
-  top: 0;
-  right: 5px;
-  font-size: 20px;
-  padding: 5px 5px 5px 5px;
+.track_info_modal {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  font-family: initial;
+  height: 30px;
+  font-size: 30px;
 }
 
 
@@ -74,7 +73,7 @@ input[type=range]::-webkit-slider-thumb {
 /*************************/
 
 .audio_controls_container {
-  background-color: $main_color;
+  //background-color: $main_color;
   margin-bottom: 10px;
   max-height: 80%;
 }
@@ -97,6 +96,7 @@ input[type=range]::-webkit-slider-thumb {
 .play_btn:hover svg,
 .pause_btn:hover svg {
   fill: $theme_color;
+//  position: inherit;
 }
 
 .modal_audio_controls 
