@@ -1,26 +1,37 @@
-import React, { useState, useEffect, useRef, useInsertionEffect } from "react"
-//import Backdrop from "./Backdrop"
+import React, { useState, useEffect, useContext, useInsertionEffect } from "react"
 import "./theme_changer.scss"
 import "../../styles/variables.scss"
+import { themeContext } from "../../../context/theme.context"
 
+export const ThemeChanger = () => {
+  ///////////////////////////////////
+  //////////// VARIABLES ////////////
+  ///////////////////////////////////
+  const {
+    themeList,
+    setThemeIndex
+  } = useContext(themeContext)
 
-export const ThemeChanger = ({active, set_active }) => {
-  
-  const [theme, changeTheme] = useState(0);
-/*
-  const theme_handler = async () => {
+  ///////////////////////////////////
+  //////////// FUNCTIONS ////////////
+  ///////////////////////////////////
 
-    changeTheme(theme === 'theme_1' ? 'theme_2' : 'theme_1');
-
-    useEffect() => {
-      const bg_color = `var($background_color- )`
-    }, [theme]
-  
+  const themeHandler = ({index}) => {
+    console.log("[THEME CHANGER] INDEX: ", index)
+    setThemeIndex(index)
   }
-*/
+
+  ///////////////////////////////////
+  //////////// RENDERING ////////////
+  ///////////////////////////////////
+
   return (
-  <div className={active ? "player_container active" : "player_container"}>
-    <button onClick={theme_handler}> THEME</button>
-  </div>
+    <div className="theme_container">
+      { themeList.map((theme, index) =>
+        <div className="theme_box" onClick={themeHandler(index)} key={index} >
+          <div className="theme_item" style={{backgroundColor: theme}}></div>
+        </div>
+      )}
+    </div>
   )
 }

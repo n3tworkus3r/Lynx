@@ -1,3 +1,12 @@
-$background_color: #131a24;
-$main_color: #202e3d;
-$theme_color: #a31717;
+
+
+$theme_color: var(--themeColor);
+$background_color: var(--backgroundColor);
+$main_color: var(--mainColor);
+
+
+
+
+// $background_color: #131a24;
+// $main_color: #202e3d;
+// $theme_color: #a31717;

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { authContext } from '../../../context/auth.context'
+import { ThemeChanger } from '../theme_changer/theme_changer'
 import axios from 'axios'
 export const NavbarContent = ({active, set_active}) => {
   ///////////////////////////////////
@@ -52,6 +53,7 @@ export const NavbarContent = ({active, set_active}) => {
     <NavLink className="nav_link" to="/library">Library</NavLink>
     <NavLink className="nav_link" to="/playlists">Playlists</NavLink>
     <a to="/" className="nav_link" onClick={logoutHandler}>LogOut</a>
+    {/*<ThemeChanger/>*/}
   </div>
 )
 

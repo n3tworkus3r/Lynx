@@ -13,7 +13,7 @@ export const LoginPage = () => {
   const message = useMessage()
   const auth = useContext(authContext) 
   const { loading, request, error, clear_error } = useHttp()
-  const [ form, setForm ] = useState({ email: '', password: '' })
+  const [ form, setForm ] = useState({ login: '', password: '' })
 
   ///////////////////////////////////
   //////////// FUNCTIONS ////////////
@@ -68,7 +68,7 @@ export const LoginPage = () => {
     <div id="login_box">
       <div className="login_form">
         <span id="login_title">LYNX<br/></span>
-        <input  className="login_content" type="text" name="email" placeholder="Username" onChange={changeFormHandler} required/>
+        <input  className="login_content" type="text" name="login" placeholder="Username" onChange={changeFormHandler} required/>
         <input className="login_content" type="password" name="password" placeholder="Password" onChange={changeFormHandler} required/>
         <button className="login_content" id="login_btn" type="submit" value="Login" onClick={loginHandler}>Login</button>
         <button className="login_content" id="login_btn" type="submit" value="Register" onClick={registerHandler} disabled={loading}>Register</button>

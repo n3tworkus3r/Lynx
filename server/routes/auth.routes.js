@@ -30,8 +30,8 @@ router.post(
     /////////////////////////////////////////
     //////// USER EXISTING CHECK
     /////////////////////////////////////////
-    const {email, password} = req.body
-    const candidate = await Users.findOne({email})
+    const {login, password} = req.body
+    const candidate = await Users.findOne({login})
 
     if(candidate) {
       res.status(400).json({message : 'User already exists!' })
@@ -41,7 +41,7 @@ router.post(
     //////// PASSWORD HASHING
     /////////////////////////////////////////
     const hashed_password = await bcrypt.hash(password, 12)
-    const User = new Users({email, password: hashed_password})
+    const User = new Users({login, password: hashed_password})
 
     await User.save()
     res.status(201).json({message : 'Ok!'})
@@ -74,9 +74,9 @@ router.post(
       })
     }
 
-    const {email, password} = req.body
+    const {login, password} = req.body
 
-    const user = await Users.findOne({ email })
+    const user = await Users.findOne({ login })
 
     if(!user) {
       return res.status(400).json({message : 'User not found!'})
