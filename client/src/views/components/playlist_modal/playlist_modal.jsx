@@ -22,7 +22,7 @@ export const PlaylistContent = ({playlist_data}) => {
 
   const [playlist, setPlaylist] = useState([])
   
-  const [tracks, setTracks] = useState([])
+  const [tracks, setTracks] = useState([''])
 
   const [playerActive, setPlayerActive] = useState(false)
 

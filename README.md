@@ -1,11 +1,20 @@
-node-sass login.sass login.css
 
-BG COLOR -- #131a24 SECOND COLOR -- #202e3d THEME COLOR -- #a31717
+# GETTING STARTED
 
-REACT
-INIT PROJECT
+### RUN CLIENT
+```
 cd ./client
-npx create-app-react .
-REACT ROUTING
-npm i react-router-dom
-npm install react-router-dom --save
+npm run client
+```
+
+### RUN SERVER
+```
+cd ./server
+npm run server
+```
+
+### RUN SECOND SERVER
+```
+cd ./http-server
+http-server ./
+```
